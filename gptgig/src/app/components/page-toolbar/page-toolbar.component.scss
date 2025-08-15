@@ -1,0 +1,24 @@
+ion-toolbar {
+  display: flex;
+  align-items: center;
+}
+
+ion-title {
+  flex: 0 0 auto;
+}
+
+.toolbar-search {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.toolbar-search ion-searchbar {
+  width: 100%;
+  max-width: 400px;
+}
+
+ion-avatar {
+  width: 32px;
+  height: 32px;
+}

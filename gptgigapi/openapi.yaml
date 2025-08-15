@@ -1,0 +1,11 @@
+openapi: 3.0.0
+info:
+  title: gptgigapi
+  version: "1.0.0"
+paths:
+  /WeatherForecast:
+    get:
+      summary: Get weather forecast
+      responses:
+        '200':
+          description: Successful response

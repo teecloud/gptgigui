@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\apollo.git\\gptgig\\gptgigapi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|c:\\apollo.git\\gptgig\\gptgigapi\\controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|solutionrelative:controllers\\notificationcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|c:\\apollo.git\\gptgig\\gptgigapi\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -35,19 +39,32 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "NotificationController.cs",
+              "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\Controllers\\NotificationController.cs",
+              "RelativeDocumentMoniker": "Controllers\\NotificationController.cs",
+              "ToolTip": "C:\\apollo.git\\gptgig\\gptgigapi\\Controllers\\NotificationController.cs",
+              "RelativeToolTip": "Controllers\\NotificationController.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAAwBMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T23:47:14.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
               "ToolTip": "C:\\apollo.git\\gptgig\\gptgigapi\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAEMAAAAAAAAAAAAiwB0AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-15T22:18:56.055Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "openapi.yaml",
               "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\openapi.yaml",
               "RelativeDocumentMoniker": "openapi.yaml",
@@ -59,7 +76,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\appsettings.json",
               "RelativeDocumentMoniker": "appsettings.json",
@@ -71,7 +88,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
@@ -83,7 +100,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "gptgigapi.csproj",
               "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\gptgigapi.csproj",
               "RelativeDocumentMoniker": "gptgigapi.csproj",
@@ -91,8 +108,7 @@
               "RelativeToolTip": "gptgigapi.csproj",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-15T17:54:59.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T17:54:59.783Z"
             }
           ]
         }

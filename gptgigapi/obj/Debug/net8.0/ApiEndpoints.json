@@ -32,6 +32,38 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "gptgigapi.Controllers.NotificationController",
+    "Method": "SendEmail",
+    "RelativePath": "api/Notification/email",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "gptgigapi.Controllers.EmailDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gptgigapi.Controllers.NotificationController",
+    "Method": "SendSms",
+    "RelativePath": "api/Notification/sms",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "gptgigapi.Controllers.SmsDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "gptgigapi.Controllers.PhotosController",
     "Method": "Upload",
     "RelativePath": "api/Photos",

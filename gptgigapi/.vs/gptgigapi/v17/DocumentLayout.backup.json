@@ -40,7 +40,7 @@
               "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
               "ToolTip": "C:\\apollo.git\\gptgig\\gptgigapi\\Controllers\\AuthController.cs",
               "RelativeToolTip": "Controllers\\AuthController.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAB4AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAACMAAAAAAAAAAAAcwCoAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-15T22:18:56.055Z",
               "EditorCaption": ""
@@ -91,8 +91,7 @@
               "RelativeToolTip": "gptgigapi.csproj",
               "ViewState": "AgIAAAkAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-08-15T17:54:59.783Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-08-15T17:54:59.783Z"
             }
           ]
         }

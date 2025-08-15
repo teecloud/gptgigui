@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Camera, CameraResultType, CameraSource, Photo } from '@capacitor/camera';
 import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
+import { Capacitor } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
@@ -10,6 +11,17 @@ public photos: UserPhoto[] = [];
   private PHOTO_STORAGE: string = 'photos';
 
   constructor(private platform: Platform) {}
+
+  async captureBase64(): Promise<string | undefined> {
+    const photo = await Camera.getPhoto({
+      resultType: CameraResultType.Base64,
+      source: CameraSource.Camera,
+      quality: 90,
+    });
+    return photo.base64String
+      ? `data:image/${photo.format};base64,${photo.base64String}`
+      : undefined;
+  }
 
   public async loadSaved() {
     // Retrieve cached photo array data
@@ -86,7 +98,7 @@ public photos: UserPhoto[] = [];
       // already loaded into memory
       return {
         filepath: fileName,
-        webviewPath: photo.webPath,
+        webviewPath: photo.webPath!,
       };
     }
   }
@@ -97,7 +109,7 @@ public photos: UserPhoto[] = [];
     if (this.platform.is('hybrid')) {
       // Read the file into base64 format
       const file = await Filesystem.readFile({
-        path: photo.path,
+        path: photo.path!,
       });
 
       return file.data;

@@ -5,65 +5,94 @@
 </ion-header>
 
 <ion-content class="admin">
-  <ion-list inset="true">
-    <ion-item-divider color="primary"><ion-label>Service Categories</ion-label></ion-item-divider>
-    <form [formGroup]="catForm" (ngSubmit)="onCatSubmit()">
-      <ion-item>
-        <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input formControlName="icon" label="Icon (ionicon name)" labelPlacement="stacked"></ion-input>
-      </ion-item>
-      <ion-button type="submit" expand="block">Save Category</ion-button>
-    </form>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Service Categories</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="catForm" (ngSubmit)="onCatSubmit()">
+        <ion-item>
+          <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input formControlName="icon" label="Icon (ionicon name)" labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-button type="submit" expand="block">Save Category</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-item-divider color="primary"><ion-label>Services (Rect Cards)</ion-label></ion-item-divider>
-    <form [formGroup]="svcForm" (ngSubmit)="onSvcSubmit()">
-      <ion-item>
-        <ion-input formControlName="title" label="Title" labelPlacement="floating" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-select formControlName="categoryId" label="Category" labelPlacement="stacked" interface="popover">
-          <ion-select-option *ngFor="let c of (categories$ | async)" [value]="c.id">{{c.name}}</ion-select-option>
-        </ion-select>
-      </ion-item>
-      <ion-item>
-        <ion-input type="number" formControlName="price" label="Price (USD)" labelPlacement="stacked"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="number" formControlName="durationMin" label="Duration (min)" labelPlacement="stacked"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>Image</ion-label>
-        <input type="file" accept="image/*" (change)="handleImage($event, 'imageUrl')" />
-      </ion-item>
-      <ion-button type="submit" expand="block">Save Service</ion-button>
-    </form>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Services (Rect Cards)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="svcForm" (ngSubmit)="onSvcSubmit()">
+        <ion-item>
+          <ion-input formControlName="title" label="Title" labelPlacement="floating" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-select formControlName="categoryId" label="Category" labelPlacement="stacked" interface="popover">
+            <ion-select-option *ngFor="let c of (categories$ | async)" [value]="c.id">{{c.name}}</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" formControlName="price" label="Price (USD)" labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" formControlName="durationMin" label="Duration (min)" labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item lines="none" *ngIf="!isMobile">
+          <ion-label>Image</ion-label>
+          <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />
+        </ion-item>
+        <ion-item lines="none" *ngIf="isMobile">
+          <ion-label>Image</ion-label>
+          <ion-button (click)="captureImage('imageUrl')">Take Photo</ion-button>
+        </ion-item>
+        <ion-button type="submit" expand="block">Save Service</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
-    <ion-item-divider color="primary"><ion-label>Providers (Circular Cards)</ion-label></ion-item-divider>
-    <form [formGroup]="providerForm" (ngSubmit)="onProvSubmit()">
-      <ion-item>
-        <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input type="number" formControlName="rating" label="Rating" labelPlacement="stacked"></ion-input>
-      </ion-item>
-      <ion-item lines="none">
-        <ion-label>Avatar</ion-label>
-        <input type="file" accept="image/*" (change)="handleImage($event, 'avatarUrl')" />
-      </ion-item>
-      <ion-button type="submit" expand="block">Save Provider</ion-button>
-    </form>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Providers (Circular Cards)</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <form [formGroup]="providerForm" (ngSubmit)="onProvSubmit()">
+        <ion-item>
+          <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input type="number" formControlName="rating" label="Rating" labelPlacement="stacked"></ion-input>
+        </ion-item>
+        <ion-item lines="none" *ngIf="!isMobile">
+          <ion-label>Avatar</ion-label>
+          <input type="file" accept="image/*" (change)="handleFile($event, 'avatarUrl')" />
+        </ion-item>
+        <ion-item lines="none" *ngIf="isMobile">
+          <ion-label>Avatar</ion-label>
+          <ion-button (click)="captureImage('avatarUrl')">Take Photo</ion-button>
+        </ion-item>
+        <ion-button type="submit" expand="block">Save Provider</ion-button>
+      </form>
+    </ion-card-content>
+  </ion-card>
 
-  <ion-list inset="true">
-    <ion-item-divider><ion-label>Current Services</ion-label></ion-item-divider>
-    <ion-item *ngFor="let s of (services$ | async)">
-      <ion-thumbnail slot="start"><img [src]="s.imageUrl || 'assets/placeholder-rect.jpg'"></ion-thumbnail>
-      <ion-label>
-        <div>{{s.title}}</div>
-        <small>{{s.price ? ('$'+s.price) : ''}}</small>
-      </ion-label>
-    </ion-item>
-  </ion-list>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Current Services</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-item *ngFor="let s of (services$ | async)">
+        <ion-thumbnail slot="start"><img [src]="s.imageUrl || 'assets/placeholder-rect.jpg'"></ion-thumbnail>
+        <ion-label>
+          <div>{{s.title}}</div>
+          <small>{{s.price ? ('$'+s.price) : ''}}</small>
+        </ion-label>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
+

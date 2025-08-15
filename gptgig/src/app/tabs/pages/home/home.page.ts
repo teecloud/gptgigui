@@ -5,11 +5,12 @@ import { OffersCarouselComponent } from '../../../components/offers-carousel/off
 import { CatalogService } from '../../../services/catalog.service';
 import { map } from 'rxjs/operators';
 import { RouterLink } from '@angular/router';
+import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [IonicModule, CommonModule, AsyncPipe, OffersCarouselComponent, RouterLink],
+  imports: [IonicModule, CommonModule, AsyncPipe, OffersCarouselComponent, PageToolbarComponent],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]

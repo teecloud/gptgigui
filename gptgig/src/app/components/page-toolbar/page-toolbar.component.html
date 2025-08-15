@@ -1,11 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title slot="start">{{ title }}</ion-title>
+    <ion-buttons slot="start">
+     
+   
 
-    <div class="toolbar-search">
+   
       <ion-searchbar placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
-    </div>
-
+  
+    </ion-buttons>
     <ion-buttons slot="end">
       <ion-avatar>
         <img [src]="avatarSrc" alt="Profile" />

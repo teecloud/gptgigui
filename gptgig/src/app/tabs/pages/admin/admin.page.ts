@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CatalogService } from '../../../services/catalog.service';
 import { PhotoService } from '../../../services/photo.service';
+import { App } from '@capacitor/app';
+import { PageToolbarComponent } from '../../../components/page-toolbar/page-toolbar.component';
 
 
 // Lightweight UUID (optional): if you prefer, replace with Date.now().toString()
@@ -11,7 +13,7 @@ import { PhotoService } from '../../../services/photo.service';
 @Component({
   standalone: true,
   selector: 'app-admin',
-  imports: [IonicModule, CommonModule, ReactiveFormsModule],
+  imports: [IonicModule, CommonModule, ReactiveFormsModule, PageToolbarComponent],
   templateUrl: './admin.page.html',
   styleUrls: ['./admin.page.scss']
 })

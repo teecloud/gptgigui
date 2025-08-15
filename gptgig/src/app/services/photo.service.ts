@@ -4,13 +4,15 @@ import { Filesystem, Directory } from '@capacitor/filesystem';
 import { Preferences } from '@capacitor/preferences';
 import { Capacitor } from '@capacitor/core';
 import { Platform } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class PhotoService {
 public photos: UserPhoto[] = [];
   private PHOTO_STORAGE: string = 'photos';
 
-  constructor(private platform: Platform) {}
+  constructor(private platform: Platform, private http: HttpClient) {}
 
   async captureBase64(): Promise<string | undefined> {
     const photo = await Camera.getPhoto({
@@ -150,6 +152,14 @@ public photos: UserPhoto[] = [];
       };
       reader.readAsDataURL(blob);
     });
+
+  async uploadToServer(photo: UserPhoto) {
+    const response = await fetch(photo.webviewPath);
+    const blob = await response.blob();
+    const formData = new FormData();
+    formData.append('file', blob, 'photo.jpg');
+    return this.http.post(`${environment.apiUrl}/photos`, formData).toPromise();
+  }
 
 }
 export interface UserPhoto {

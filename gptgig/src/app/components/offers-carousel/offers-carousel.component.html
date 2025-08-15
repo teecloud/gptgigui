@@ -1,0 +1,27 @@
+<section class="carousel">
+  <div class="section-title">
+    <h2>{{ title }}</h2>
+    <ion-button fill="clear" size="small" color="secondary">See all</ion-button>
+  </div>
+
+  <!-- Swiper web component -->
+  <swiper-container
+    slides-per-view="auto"
+    space-between="12"
+    css-mode="true"
+    style="display:block; width:100%;"
+  >
+    <swiper-slide *ngFor="let it of items">
+      <ng-container [ngTemplateOutlet]="cardType === 'rect' ? rect : circ" [ngTemplateOutletContext]="{ $implicit: it }"></ng-container>
+    </swiper-slide>
+  </swiper-container>
+
+  <!-- Templates for the two card types -->
+  <ng-template #rect let-svc>
+    <app-menu-card-rect [item]="svc"></app-menu-card-rect>
+  </ng-template>
+
+  <ng-template #circ let-prov>
+    <app-menu-card-circ [provider]="prov"></app-menu-card-circ>
+  </ng-template>
+</section>

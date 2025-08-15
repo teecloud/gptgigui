@@ -1,0 +1,30 @@
+<ion-header translucent="true" class="home-header">
+  <ion-toolbar>
+    <ion-title>Good evening</ion-title>
+    <ion-buttons slot="end">
+      <ion-button [routerLink]="['/tabs/admin']" fill="clear" aria-label="Admin">
+        <ion-icon name="settings-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="gutter">
+   @let topPicks = (topPicks$ | async);
+@if (topPicks) {
+  <app-offers-carousel title="Top picks for you" [cardType]="'rect'" [items]="topPicks"></app-offers-carousel>
+}
+
+@let topProviders = (topProviders$ | async);
+@if (topProviders) {
+  <app-offers-carousel title="Top providers" [cardType]="'circ'" [items]="topProviders"></app-offers-carousel>
+}
+
+@let trending = (trending$ | async);
+@if (trending) {
+  <app-offers-carousel title="Trending near you" [cardType]="'rect'" [items]="trending"></app-offers-carousel>
+}
+
+  </div>
+</ion-content>

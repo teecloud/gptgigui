@@ -1,0 +1,7 @@
+{
+  "name": "gptgig",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

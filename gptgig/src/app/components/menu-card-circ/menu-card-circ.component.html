@@ -1,0 +1,9 @@
+<ion-card class="circ">
+  <div class="avatar">
+    <img [src]="provider.avatarUrl || 'assets/placeholder-avatar.jpg'" alt="{{provider.name}}" />
+  </div>
+  <div class="meta">
+    <div class="name">{{ provider.name }}</div>
+    <div class="sub" *ngIf="provider.rating">★ {{ provider.rating | number:'1.1-1' }}</div>
+  </div>
+</ion-card>

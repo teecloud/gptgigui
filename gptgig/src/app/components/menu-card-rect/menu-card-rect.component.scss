@@ -1,0 +1,16 @@
+.rect {
+  --background: var(--card-surface, var(--ion-color-step-100));
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  width: 240px;
+  .image {
+    height: 140px;
+    background-size: cover;
+    background-position: center;
+  }
+  ion-card-header {
+    padding: 12px;
+  }
+  ion-card-title { font-size: 14px; line-height: 1.25; }
+  ion-card-subtitle { color: var(--ion-color-medium); font-size: 12px; }
+}

@@ -1,0 +1,11 @@
+.home-header {
+  --background: transparent;
+  ion-toolbar {
+    --background: var(--ion-background-color);
+    --color: var(--ion-text-color);
+  }
+}
+
+.home-content {
+  .gutter { padding: 8px 8px 24px; }
+}

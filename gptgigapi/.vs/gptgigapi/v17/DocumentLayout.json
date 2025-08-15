@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "C:\\apollo.git\\gptgig\\gptgigapi\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|c:\\apollo.git\\gptgig\\gptgigapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|c:\\apollo.git\\gptgig\\gptgigapi\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|solutionrelative:appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|c:\\apollo.git\\gptgig\\gptgigapi\\gptgigapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{DCF69770-AB30-4B18-8F19-CC8FFCC3D45A}|gptgigapi.csproj|solutionrelative:gptgigapi.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
@@ -14,17 +22,43 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\appsettings.json",
+              "RelativeDocumentMoniker": "appsettings.json",
+              "ToolTip": "C:\\apollo.git\\gptgig\\gptgigapi\\appsettings.json",
+              "RelativeToolTip": "appsettings.json",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAA4AAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-08-15T18:24:59.587Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\apollo.git\\gptgig\\gptgigapi\\Program.cs*",
+              "RelativeToolTip": "Program.cs*",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAADAAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-15T18:22:26.933Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "gptgigapi.csproj",
               "DocumentMoniker": "C:\\apollo.git\\gptgig\\gptgigapi\\gptgigapi.csproj",
               "RelativeDocumentMoniker": "gptgigapi.csproj",
               "ToolTip": "C:\\apollo.git\\gptgig\\gptgigapi\\gptgigapi.csproj",
               "RelativeToolTip": "gptgigapi.csproj",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
               "WhenOpened": "2025-08-15T17:54:59.783Z",
               "EditorCaption": ""

@@ -1,0 +1,6 @@
+@gptgigapi_HostAddress = http://localhost:5286
+
+GET {{gptgigapi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("gptgigapi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4dac4967f16ff3fbba5d268668d3f38ca0c9b27f")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8ea34183949932344555af1b68bed9256fc56e10")]
 [assembly: System.Reflection.AssemblyProductAttribute("gptgigapi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("gptgigapi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
+using gptgigapi.Services;
 
 namespace gptgigapi.Controllers
 {
@@ -14,22 +15,29 @@ namespace gptgigapi.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly INotificationService _notificationService;
 
-        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration)
+        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration, INotificationService notificationService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
+            _notificationService = notificationService;
         }
 
         [HttpPost("register")]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
-            var user = new IdentityUser { UserName = dto.Email, Email = dto.Email };
+            var user = new IdentityUser { UserName = dto.Email, Email = dto.Email, PhoneNumber = dto.PhoneNumber };
             var result = await _userManager.CreateAsync(user, dto.Password);
             if (!result.Succeeded)
             {
                 return BadRequest(result.Errors);
+            }
+            await _notificationService.SendEmailAsync(dto.Email, "Welcome", "Thank you for registering!");
+            if (!string.IsNullOrWhiteSpace(dto.PhoneNumber))
+            {
+                await _notificationService.SendSmsAsync(dto.PhoneNumber, "Thank you for registering!");
             }
             return Ok();
         }
@@ -72,6 +80,6 @@ namespace gptgigapi.Controllers
         }
     }
 
-    public record RegisterDto(string Email, string Password);
+    public record RegisterDto(string Email, string Password, string? PhoneNumber);
     public record LoginDto(string Email, string Password);
 }

@@ -1,3 +1,5 @@
 # Visual Studio local settings
 .vs/
 *.vsidx
+
+gptgigapi/.vs/gptgigapi/v17/

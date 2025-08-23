@@ -149,3 +149,6 @@ C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Worksp
 C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
+C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Twilio.dll

@@ -40,6 +40,14 @@ builder.Services.AddAuthentication(options =>
 
 builder.Services.AddAuthorization();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowClient", policy =>
+        policy.WithOrigins("http://localhost:8100")
+              .AllowAnyHeader()
+              .AllowAnyMethod());
+});
+
 builder.Services.AddSingleton(_ => new BlobServiceClient(builder.Configuration.GetConnectionString("AzureStorage")));
 
 builder.Services.AddScoped<INotificationService, NotificationService>();
@@ -103,6 +111,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowClient");
 
 app.UseAuthentication();
 app.UseAuthorization();

@@ -54,25 +54,28 @@ export class AdminPage {
   async onCatSubmit() {
     const val = this.catForm.value;
     if (!val.id) val.id = 'cat-' +  Date.now().toString();
-    this.catalog.upsertCategory(val as any);
-    this.catForm.reset({ icon: 'briefcase' });
-    this.toastMsg('Category saved');
+    this.catalog.upsertCategory(val as any).subscribe(() => {
+      this.catForm.reset({ icon: 'briefcase' });
+      this.toastMsg('Category saved');
+    });
   }
 
   async onSvcSubmit() {
     const val = this.svcForm.value;
     if (!val.id) val.id = 'svc-' + Date.now().toString();
-    this.catalog.upsertService(val as any);
-    this.svcForm.reset();
-    this.toastMsg('Service saved');
+    this.catalog.upsertService(val as any).subscribe(() => {
+      this.svcForm.reset();
+      this.toastMsg('Service saved');
+    });
   }
 
   async onProvSubmit() {
     const val = this.providerForm.value;
     if (!val.id) val.id = 'pro-' + Date.now().toString();
-    this.catalog.upsertProvider(val as any);
-    this.providerForm.reset({ rating: 4.8 });
-    this.toastMsg('Provider saved');
+    this.catalog.upsertProvider(val as any).subscribe(() => {
+      this.providerForm.reset({ rating: 4.8 });
+      this.toastMsg('Provider saved');
+    });
   }
 
   async handleFile(event: Event, control: 'imageUrl' | 'avatarUrl') {

@@ -1,4 +1,4 @@
-<ion-card class="rect">
+<ion-card class="rect" (click)="select()">
   <div class="image" [style.backgroundImage]="'url(' + (item.imageUrl || 'assets/placeholder-rect.jpg') + ')'"></div>
   <ion-card-header>
     <ion-card-title>{{ item.title }}</ion-card-title>

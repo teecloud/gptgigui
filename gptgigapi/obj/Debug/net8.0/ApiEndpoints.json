@@ -32,6 +32,114 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "gptgigapi.Controllers.CatalogController",
+    "Method": "GetCategories",
+    "RelativePath": "api/Catalog/categories",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[gptgigapi.Models.ServiceCategory, gptgigapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "gptgigapi.Controllers.CatalogController",
+    "Method": "UpsertCategory",
+    "RelativePath": "api/Catalog/categories",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "cat",
+        "Type": "gptgigapi.Models.ServiceCategory",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gptgigapi.Controllers.CatalogController",
+    "Method": "GetProviders",
+    "RelativePath": "api/Catalog/providers",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[gptgigapi.Models.Provider, gptgigapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "gptgigapi.Controllers.CatalogController",
+    "Method": "UpsertProvider",
+    "RelativePath": "api/Catalog/providers",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "p",
+        "Type": "gptgigapi.Models.Provider",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "gptgigapi.Controllers.CatalogController",
+    "Method": "GetServices",
+    "RelativePath": "api/Catalog/services",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[gptgigapi.Models.ServiceItem, gptgigapi, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "gptgigapi.Controllers.CatalogController",
+    "Method": "UpsertService",
+    "RelativePath": "api/Catalog/services",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "svc",
+        "Type": "gptgigapi.Models.ServiceItem",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "gptgigapi.Controllers.NotificationController",
     "Method": "SendEmail",
     "RelativePath": "api/Notification/email",

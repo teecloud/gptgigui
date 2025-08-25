@@ -172,6 +172,22 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "gptgigapi.Controllers.PaymentsController",
+    "Method": "CreateIntent",
+    "RelativePath": "api/Payments/create-intent",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "gptgigapi.Controllers.CreatePaymentIntentDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "gptgigapi.Controllers.PhotosController",
     "Method": "Upload",
     "RelativePath": "api/Photos",

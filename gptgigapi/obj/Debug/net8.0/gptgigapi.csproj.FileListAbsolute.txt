@@ -152,3 +152,4 @@ C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.W
 C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Microsoft.Bcl.Memory.dll
 C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Twilio.dll
+C:\apollo.git\gptgig\gptgigapi\bin\Debug\net8.0\Stripe.net.dll

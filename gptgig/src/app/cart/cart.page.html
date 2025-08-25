@@ -5,9 +5,23 @@
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-item>
-      <ion-label>Your cart is empty.</ion-label>
-    </ion-item>
-  </ion-list>
+  <ng-container *ngIf="cart.selectedItem$ | async as item; else empty">
+    <ion-card>
+      <div class="image" [style.backgroundImage]="'url(' + (item.imageUrl || 'assets/placeholder-rect.jpg') + ')'"></div>
+      <ion-card-header>
+        <ion-card-title>{{ item.title }}</ion-card-title>
+        <ion-card-subtitle *ngIf="item.price != null">
+          {{ item.price | currency:'USD':'symbol':'1.0-0' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+    </ion-card>
+    <app-payment-button [amount]="(item.price || 0) * 100"></app-payment-button>
+  </ng-container>
+  <ng-template #empty>
+    <ion-list>
+      <ion-item>
+        <ion-label>Your cart is empty.</ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-template>
 </ion-content>

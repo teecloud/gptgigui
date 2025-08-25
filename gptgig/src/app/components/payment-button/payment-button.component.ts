@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit } from '@angular/core';
+import { PaymentRequestPaymentMethodEvent } from '@stripe/stripe-js';
 import { PaymentService } from '../../services/payment.service';
 
 @Component({
@@ -37,7 +38,7 @@ export class PaymentButtonComponent implements OnInit {
     });
     prButton.mount(this.el.nativeElement.querySelector('#payment-request-button'));
 
-    paymentRequest.on('paymentmethod', async (ev) => {
+    paymentRequest.on('paymentmethod', async (ev: PaymentRequestPaymentMethodEvent) => {
       const intent = await this.paymentService.createPaymentIntent(this.amount, this.currency).toPromise();
       const clientSecret = intent?.clientSecret;
       if (!clientSecret) {

@@ -8,10 +8,10 @@
       <ion-searchbar placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
   
     </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-avatar>
-        <img [src]="avatarSrc" alt="Profile" />
-      </ion-avatar>
-    </ion-buttons>
+      <ion-buttons slot="end">
+        <ion-avatar (click)="openProfileModal()">
+          <img [src]="avatarSrc" alt="Profile" />
+        </ion-avatar>
+      </ion-buttons>
   </ion-toolbar>
 </ion-header>

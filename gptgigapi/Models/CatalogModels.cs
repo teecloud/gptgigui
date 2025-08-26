@@ -17,6 +17,7 @@ namespace gptgigapi.Models
         public string? CategoryId { get; set; }
         public List<string>? Tags { get; set; }
         public double? Rating { get; set; }
+        public string? Description { get; set; }
     }
 
     public class Provider

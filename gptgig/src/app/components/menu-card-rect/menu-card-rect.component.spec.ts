@@ -3,16 +3,13 @@ import { IonicModule } from '@ionic/angular';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { MenuCardRectComponent } from './menu-card-rect.component';
-import { CartService } from '../../services/cart.service';
-
 describe('MenuCardRectComponent', () => {
   let component: MenuCardRectComponent;
   let fixture: ComponentFixture<MenuCardRectComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [MenuCardRectComponent, IonicModule.forRoot(), RouterTestingModule],
-      providers: [CartService]
+      imports: [MenuCardRectComponent, IonicModule.forRoot(), RouterTestingModule]
     }).compileComponents();
 
     fixture = TestBed.createComponent(MenuCardRectComponent);

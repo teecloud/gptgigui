@@ -41,7 +41,8 @@ export class AdminPage {
     categoryId: [''],
     price: [null],
     durationMin: [null],
-    imageUrl: ['']
+    imageUrl: [''],
+    description: ['']
   });
 
   providerForm = this.fb.group({

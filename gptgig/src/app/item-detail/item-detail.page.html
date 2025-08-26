@@ -1,0 +1,22 @@
+<ion-header *ngIf="item">
+  <ion-toolbar>
+    <ion-title>{{ item.title }}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content *ngIf="item" [fullscreen]="true">
+  <div class="image-wrapper">
+    <img [src]="item.imageUrl || 'assets/placeholder-rect.jpg'" alt="{{ item.title }}" />
+  </div>
+  <div class="info">
+    <h2>{{ item.title }}</h2>
+    <div class="price" *ngIf="item.price">{{ item.price | currency:'USD':'symbol' }}</div>
+    <div class="description" *ngIf="item.description">{{ item.description }}</div>
+  </div>
+  <ion-button expand="block" color="primary" (click)="addToCart()">Add to Cart</ion-button>
+</ion-content>
+
+<ion-content *ngIf="!item">
+  <p class="empty">Item not found.</p>
+</ion-content>
+

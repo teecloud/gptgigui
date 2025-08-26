@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { IonicModule } from '@ionic/angular';
+import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 
 @Component({
   selector: 'app-page-toolbar',
@@ -14,8 +15,17 @@ export class PageToolbarComponent {
   @Input() avatarSrc = 'assets/icon/favicon.png';
   @Output() searchChange = new EventEmitter<string>();
 
+  constructor(private modalCtrl: ModalController) {}
+
   onSearch(event: any) {
     const value = event?.target?.value ?? '';
     this.searchChange.emit(value);
+  }
+
+  async openProfileModal() {
+    const modal = await this.modalCtrl.create({
+      component: ProfileModalComponent,
+    });
+    await modal.present();
   }
 }

@@ -13,6 +13,7 @@ export interface ServiceItem {
   categoryId?: string;
   tags?: string[];
   rating?: number;
+  description?: string;
 }
 
 export interface Provider {

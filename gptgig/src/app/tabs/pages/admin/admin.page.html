@@ -38,6 +38,9 @@
         <ion-item>
           <ion-input type="number" formControlName="durationMin" label="Duration (min)" labelPlacement="stacked"></ion-input>
         </ion-item>
+        <ion-item>
+          <ion-textarea formControlName="description" label="Description" labelPlacement="stacked"></ion-textarea>
+        </ion-item>
         <ion-item lines="none" *ngIf="!isMobile">
           <ion-label>Image</ion-label>
           <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />

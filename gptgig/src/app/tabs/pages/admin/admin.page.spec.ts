@@ -14,4 +14,8 @@ describe('AdminPage', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should start at step 1', () => {
+    expect(component.step).toBe(1);
+  });
 });

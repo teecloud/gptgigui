@@ -1,9 +1,11 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+    canActivate: [authGuard],
   },
   {
     path: 'login',
@@ -16,6 +18,7 @@ export const routes: Routes = [
   {
     path: 'cart',
     loadComponent: () => import('./cart/cart.page').then((m) => m.CartPage),
+    canActivate: [authGuard],
   },
   {
     path: 'social-feeds',
@@ -23,10 +26,12 @@ export const routes: Routes = [
       import('./social-feeds/social-feeds.page').then(
         (m) => m.SocialFeedsPage,
       ),
+    canActivate: [authGuard],
   },
   {
     path: 'item/:id',
     loadComponent: () =>
       import('./item-detail/item-detail.page').then((m) => m.ItemDetailPage),
+    canActivate: [authGuard],
   },
 ];

@@ -12,5 +12,7 @@ namespace gptgigapi.Data
         }
 
         public DbSet<Photo> Photos => Set<Photo>();
+        public DbSet<VendorProfile> VendorProfiles => Set<VendorProfile>();
+        public DbSet<CustomerProfile> CustomerProfiles => Set<CustomerProfile>();
     }
 }

@@ -40,3 +40,8 @@ ion-icon {
   font-weight: 700;
   --ionicon-stroke-width: 48px;
 }
+
+body {
+  background: var(--ion-background-color);
+  color: var(--ion-text-color);
+}

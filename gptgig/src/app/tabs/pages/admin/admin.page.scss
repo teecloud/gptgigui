@@ -6,3 +6,7 @@ ion-content.admin {
     margin-bottom: 12px;
   }
 }
+
+ion-card.selected {
+  border: 2px solid var(--ion-color-primary);
+}

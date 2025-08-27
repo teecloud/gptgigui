@@ -1,123 +1,156 @@
-<app-page-toolbar title="Admin"></app-page-toolbar>
+<ion-split-pane contentId="admin-content">
+  <ion-menu contentId="admin-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Admin</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-item button (click)="setSection('templates')">
+          Templates
+          <ion-note slot="end">{{ selectedTemplate || 'None' }}</ion-note>
+        </ion-item>
+        <ion-item button (click)="setSection('categories')">
+          Categories
+          <ion-note slot="end">{{ (categories$ | async)?.length || 0 }}</ion-note>
+        </ion-item>
+        <ion-item button (click)="setSection('services')">
+          Services
+          <ion-note slot="end">{{ (services$ | async)?.length || 0 }}</ion-note>
+        </ion-item>
+        <ion-item button (click)="setSection('providers')">
+          Providers
+          <ion-note slot="end">{{ (providers$ | async)?.length || 0 }}</ion-note>
+        </ion-item>
+        <ion-item button (click)="setSection('preview')">
+          Preview
+        </ion-item>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
 
-<ion-content class="admin">
-  <!-- Step 1: Category setup -->
-  <ng-container *ngIf="step === 1">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Service Categories</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <form [formGroup]="catForm" (ngSubmit)="onCatSubmit()">
-          <ion-item>
-            <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input formControlName="icon" label="Icon (ionicon name)" labelPlacement="stacked"></ion-input>
-          </ion-item>
-          <ion-button type="submit" expand="block">Save & Next</ion-button>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
+  <ion-content id="admin-content" class="admin">
+    <ng-container [ngSwitch]="section">
+      <ng-container *ngSwitchCase="'templates'">
+        <ion-card *ngFor="let key of templateKeys" (click)="selectTemplate(key)" [class.selected]="selectedTemplate===key">
+          <ion-card-header>
+            <ion-card-title>{{ key | titlecase }}</ion-card-title>
+          </ion-card-header>
+        </ion-card>
+      </ng-container>
 
-  <!-- Step 2: Service setup -->
-  <ng-container *ngIf="step === 2">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Services (Rect Cards)</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <form [formGroup]="svcForm" (ngSubmit)="onSvcSubmit()">
-          <ion-item>
-            <ion-input formControlName="title" label="Title" labelPlacement="floating" required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-select formControlName="categoryId" label="Category" labelPlacement="stacked" interface="popover">
-              <ion-select-option *ngFor="let c of (categories$ | async)" [value]="c.id">{{c.name}}</ion-select-option>
-            </ion-select>
-          </ion-item>
-          <ion-item>
-            <ion-input type="number" formControlName="price" label="Price (USD)" labelPlacement="stacked"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input type="number" formControlName="durationMin" label="Duration (min)" labelPlacement="stacked"></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-textarea formControlName="description" label="Description" labelPlacement="stacked"></ion-textarea>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-thumbnail slot="start">
-              <img [src]="svcForm.value.imageUrl || 'assets/placeholder-rect.jpg'" />
-            </ion-thumbnail>
-            <ion-label>Image</ion-label>
-            <ng-container *ngIf="!isMobile; else mobileImg">
-              <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />
-            </ng-container>
-            <ng-template #mobileImg>
-              <ion-button (click)="captureImage('imageUrl')">Change Photo</ion-button>
-            </ng-template>
-          </ion-item>
-          <ion-button type="button" expand="block" (click)="goBack()">Back</ion-button>
-          <ion-button type="submit" expand="block">{{ editingSvc ? 'Update' : 'Save & Next' }}</ion-button>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
+      <ng-container *ngSwitchCase="'categories'">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Service Categories</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="catForm" (ngSubmit)="onCatSubmit()">
+              <ion-item>
+                <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input formControlName="icon" label="Icon (ionicon name)" labelPlacement="stacked"></ion-input>
+              </ion-item>
+              <ion-button type="submit" expand="block">Save</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
 
-  <!-- Step 3: Provider setup -->
-  <ng-container *ngIf="step === 3">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Providers (Circular Cards)</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <form [formGroup]="providerForm" (ngSubmit)="onProvSubmit()">
-          <ion-item>
-            <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
-          </ion-item>
-          <ion-item>
-            <ion-input type="number" formControlName="rating" label="Rating" labelPlacement="stacked"></ion-input>
-          </ion-item>
-          <ion-item lines="none">
-            <ion-thumbnail slot="start">
-              <img [src]="providerForm.value.avatarUrl || 'assets/placeholder-avatar.jpg'" />
-            </ion-thumbnail>
-            <ion-label>Avatar</ion-label>
-            <ng-container *ngIf="!isMobile; else mobileAv">
-              <input type="file" accept="image/*" (change)="handleFile($event, 'avatarUrl')" />
-            </ng-container>
-            <ng-template #mobileAv>
-              <ion-button (click)="captureImage('avatarUrl')">Change Photo</ion-button>
-            </ng-template>
-          </ion-item>
-          <ion-button type="button" expand="block" (click)="goBack()">Back</ion-button>
-          <ion-button type="submit" expand="block">{{ editingProv ? 'Update' : 'Save & Next' }}</ion-button>
-        </form>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
+      <ng-container *ngSwitchCase="'services'">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Services (Rect Cards)</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="svcForm" (ngSubmit)="onSvcSubmit()">
+              <ion-item>
+                <ion-input formControlName="title" label="Title" labelPlacement="floating" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-select formControlName="categoryId" label="Category" labelPlacement="stacked" interface="popover">
+                  <ion-select-option *ngFor="let c of (categories$ | async)" [value]="c.id">{{c.name}}</ion-select-option>
+                </ion-select>
+              </ion-item>
+              <ion-item>
+                <ion-input type="number" formControlName="price" label="Price (USD)" labelPlacement="stacked"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="number" formControlName="durationMin" label="Duration (min)" labelPlacement="stacked"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-textarea formControlName="description" label="Description" labelPlacement="stacked"></ion-textarea>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                  <img [src]="svcForm.value.imageUrl || 'assets/placeholder-rect.jpg'" />
+                </ion-thumbnail>
+                <ion-label>Image</ion-label>
+                <ng-container *ngIf="!isMobile; else mobileImg">
+                  <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />
+                </ng-container>
+                <ng-template #mobileImg>
+                  <ion-button (click)="captureImage('imageUrl')">Change Photo</ion-button>
+                </ng-template>
+              </ion-item>
+              <ion-button type="submit" expand="block">{{ editingSvc ? 'Update' : 'Save' }}</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
 
-  <!-- Step 4: Preview and edit -->
-  <ng-container *ngIf="step === 4">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title>Preview</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-        <h2>Services</h2>
-        <div *ngFor="let s of (services$ | async)" class="preview-item">
-          <app-menu-card-rect [item]="s"></app-menu-card-rect>
-          <ion-button size="small" (click)="editService(s)">Edit</ion-button>
-        </div>
-        <h2>Providers</h2>
-        <div *ngFor="let p of (providers$ | async)" class="preview-item">
-          <app-menu-card-circ [provider]="p"></app-menu-card-circ>
-          <ion-button size="small" (click)="editProvider(p)">Edit</ion-button>
-        </div>
-        <ion-button expand="block" (click)="goBack()">Back</ion-button>
-      </ion-card-content>
-    </ion-card>
-  </ng-container>
-</ion-content>
+      <ng-container *ngSwitchCase="'providers'">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Providers (Circular Cards)</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="providerForm" (ngSubmit)="onProvSubmit()">
+              <ion-item>
+                <ion-input formControlName="name" label="Name" labelPlacement="floating" required></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-input type="number" formControlName="rating" label="Rating" labelPlacement="stacked"></ion-input>
+              </ion-item>
+              <ion-item lines="none">
+                <ion-thumbnail slot="start">
+                  <img [src]="providerForm.value.avatarUrl || 'assets/placeholder-avatar.jpg'" />
+                </ion-thumbnail>
+                <ion-label>Avatar</ion-label>
+                <ng-container *ngIf="!isMobile; else mobileAv">
+                  <input type="file" accept="image/*" (change)="handleFile($event, 'avatarUrl')" />
+                </ng-container>
+                <ng-template #mobileAv>
+                  <ion-button (click)="captureImage('avatarUrl')">Change Photo</ion-button>
+                </ng-template>
+              </ion-item>
+              <ion-button type="submit" expand="block">{{ editingProv ? 'Update' : 'Save' }}</ion-button>
+            </form>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
 
+      <ng-container *ngSwitchCase="'preview'">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>Preview</ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <h2>Services</h2>
+            <div *ngFor="let s of (services$ | async)" class="preview-item">
+              <app-menu-card-rect [item]="s"></app-menu-card-rect>
+              <ion-button size="small" (click)="editService(s)">Edit</ion-button>
+            </div>
+            <h2>Providers</h2>
+            <div *ngFor="let p of (providers$ | async)" class="preview-item">
+              <app-menu-card-circ [provider]="p"></app-menu-card-circ>
+              <ion-button size="small" (click)="editProvider(p)">Edit</ion-button>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </ng-container>
+    </ng-container>
+  </ion-content>
+</ion-split-pane>

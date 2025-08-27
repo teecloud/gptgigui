@@ -24,3 +24,9 @@ export interface Provider {
   tags?: string[];
   servicesOffered?: string[]; // service IDs
 }
+
+export interface CatalogTemplate {
+  categories: ServiceCategory[];
+  services: ServiceItem[];
+  providers: Provider[];
+}

@@ -6,6 +6,7 @@ describe('AdminPage', () => {
   let fixture: ComponentFixture<AdminPage>;
 
   beforeEach(() => {
+    localStorage.clear();
     fixture = TestBed.createComponent(AdminPage);
     component = fixture.componentInstance;
     fixture.detectChanges();
@@ -15,7 +16,7 @@ describe('AdminPage', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should start at step 1', () => {
-    expect(component.step).toBe(1);
+  it('should start at templates section', () => {
+    expect(component.section).toBe('templates');
   });
 });

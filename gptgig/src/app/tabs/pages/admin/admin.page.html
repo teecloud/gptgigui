@@ -31,16 +31,18 @@
   </ion-menu>
 
   <ion-content id="admin-content" class="admin">
-    <ng-container [ngSwitch]="section">
-      <ng-container *ngSwitchCase="'templates'">
-        <ion-card *ngFor="let key of templateKeys" (click)="selectTemplate(key)" [class.selected]="selectedTemplate===key">
-          <ion-card-header>
-            <ion-card-title>{{ key | titlecase }}</ion-card-title>
-          </ion-card-header>
-        </ion-card>
-      </ng-container>
+    @switch (section) {
+      @case ('templates') {
+        @for (key of templateKeys; track key) {
+          <ion-card (click)="selectTemplate(key)" [class.selected]="selectedTemplate===key">
+            <ion-card-header>
+              <ion-card-title>{{ key | titlecase }}</ion-card-title>
+            </ion-card-header>
+          </ion-card>
+        }
+      }
 
-      <ng-container *ngSwitchCase="'categories'">
+      @case ('categories') {
         <ion-card>
           <ion-card-header>
             <ion-card-title>Service Categories</ion-card-title>
@@ -57,9 +59,9 @@
             </form>
           </ion-card-content>
         </ion-card>
-      </ng-container>
+      }
 
-      <ng-container *ngSwitchCase="'services'">
+      @case ('services') {
         <ion-card>
           <ion-card-header>
             <ion-card-title>Services (Rect Cards)</ion-card-title>
@@ -71,7 +73,9 @@
               </ion-item>
               <ion-item>
                 <ion-select formControlName="categoryId" label="Category" labelPlacement="stacked" interface="popover">
-                  <ion-select-option *ngFor="let c of (categories$ | async)" [value]="c.id">{{c.name}}</ion-select-option>
+                  @for (c of (categories$ | async); track c.id) {
+                    <ion-select-option [value]="c.id">{{c.name}}</ion-select-option>
+                  }
                 </ion-select>
               </ion-item>
               <ion-item>
@@ -88,20 +92,19 @@
                   <img [src]="svcForm.value.imageUrl || 'assets/placeholder-rect.jpg'" />
                 </ion-thumbnail>
                 <ion-label>Image</ion-label>
-                <ng-container *ngIf="!isMobile; else mobileImg">
+                @if (!isMobile) {
                   <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />
-                </ng-container>
-                <ng-template #mobileImg>
+                } @else {
                   <ion-button (click)="captureImage('imageUrl')">Change Photo</ion-button>
-                </ng-template>
+                }
               </ion-item>
               <ion-button type="submit" expand="block">{{ editingSvc ? 'Update' : 'Save' }}</ion-button>
             </form>
           </ion-card-content>
         </ion-card>
-      </ng-container>
+      }
 
-      <ng-container *ngSwitchCase="'providers'">
+      @case ('providers') {
         <ion-card>
           <ion-card-header>
             <ion-card-title>Providers (Circular Cards)</ion-card-title>
@@ -119,38 +122,41 @@
                   <img [src]="providerForm.value.avatarUrl || 'assets/placeholder-avatar.jpg'" />
                 </ion-thumbnail>
                 <ion-label>Avatar</ion-label>
-                <ng-container *ngIf="!isMobile; else mobileAv">
+                @if (!isMobile) {
                   <input type="file" accept="image/*" (change)="handleFile($event, 'avatarUrl')" />
-                </ng-container>
-                <ng-template #mobileAv>
+                } @else {
                   <ion-button (click)="captureImage('avatarUrl')">Change Photo</ion-button>
-                </ng-template>
+                }
               </ion-item>
               <ion-button type="submit" expand="block">{{ editingProv ? 'Update' : 'Save' }}</ion-button>
             </form>
           </ion-card-content>
         </ion-card>
-      </ng-container>
+      }
 
-      <ng-container *ngSwitchCase="'preview'">
+      @case ('preview') {
         <ion-card>
           <ion-card-header>
             <ion-card-title>Preview</ion-card-title>
           </ion-card-header>
           <ion-card-content>
             <h2>Services</h2>
-            <div *ngFor="let s of (services$ | async)" class="preview-item">
-              <app-menu-card-rect [item]="s"></app-menu-card-rect>
-              <ion-button size="small" (click)="editService(s)">Edit</ion-button>
-            </div>
+            @for (s of (services$ | async); track s.id) {
+              <div class="preview-item">
+                <app-menu-card-rect [item]="s"></app-menu-card-rect>
+                <ion-button size="small" (click)="editService(s)">Edit</ion-button>
+              </div>
+            }
             <h2>Providers</h2>
-            <div *ngFor="let p of (providers$ | async)" class="preview-item">
-              <app-menu-card-circ [provider]="p"></app-menu-card-circ>
-              <ion-button size="small" (click)="editProvider(p)">Edit</ion-button>
-            </div>
+            @for (p of (providers$ | async); track p.id) {
+              <div class="preview-item">
+                <app-menu-card-circ [provider]="p"></app-menu-card-circ>
+                <ion-button size="small" (click)="editProvider(p)">Edit</ion-button>
+              </div>
+            }
           </ion-card-content>
         </ion-card>
-      </ng-container>
-    </ng-container>
+      }
+    }
   </ion-content>
 </ion-split-pane>

@@ -3,7 +3,9 @@
 <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
 <ion-searchbar placeholder="Search vendors" [(ngModel)]="vendorQuery" (ionInput)="searchVendors()"></ion-searchbar>
 <ion-list>
-  <ion-item *ngFor="let v of vendors" (click)="selectVendor(v)">{{ v.name }}</ion-item>
+  @for (v of vendors; track v) {
+    <ion-item (click)="selectVendor(v)">{{ v.name }}</ion-item>
+  }
 </ion-list>
 <ion-button fill="clear" (click)="addVendor()">
   <ion-icon name="add-circle" slot="start"></ion-icon>

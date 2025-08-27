@@ -11,9 +11,11 @@
     css-mode="true"
     style="display:block; width:100%;"
   >
-    <swiper-slide *ngFor="let it of items">
-      <ng-container [ngTemplateOutlet]="cardType === 'rect' ? rect : circ" [ngTemplateOutletContext]="{ $implicit: it }"></ng-container>
-    </swiper-slide>
+    @for (it of items; track it) {
+      <swiper-slide>
+        <ng-container [ngTemplateOutlet]="cardType === 'rect' ? rect : circ" [ngTemplateOutletContext]="{ $implicit: it }"></ng-container>
+      </swiper-slide>
+    }
   </swiper-container>
 
   <!-- Templates for the two card types -->

@@ -9,10 +9,10 @@
 
 <ion-content>
   <div class="feed">
-    <ng-container *ngFor="let it of feedItems">
+    @for (it of feedItems; track it) {
       <ng-container [ngTemplateOutlet]="cardType === 'rect' ? rect : circ"
                     [ngTemplateOutletContext]="{ $implicit: it }"></ng-container>
-    </ng-container>
+    }
   </div>
   <ion-infinite-scroll (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>

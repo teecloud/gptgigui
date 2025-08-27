@@ -1,12 +1,17 @@
 <app-page-toolbar title="Inbox"></app-page-toolbar>
 
 <ion-content [fullscreen]="true">
-  <div *ngFor="let msg of messages" class="message" [class.own]="msg.senderId === currentUserId">
-    <div class="bubble">
-      <p>{{ msg.content }}</p>
-      <small>{{ msg.timestamp | date: 'shortTime' }} <span *ngIf="msg.senderId === currentUserId">{{ msg.isRead ? '✔✔' : '✔' }}</span></small>
+  @for (msg of messages; track msg) {
+    <div class="message" [class.own]="msg.senderId === currentUserId">
+      <div class="bubble">
+        <p>{{ msg.content }}</p>
+        <small>
+          {{ msg.timestamp | date: 'shortTime' }}
+          @if (msg.senderId === currentUserId) {<span>{{ msg.isRead ? '✔✔' : '✔' }}</span>}
+        </small>
+      </div>
     </div>
-  </div>
+  }
 </ion-content>
 
 <ion-footer>

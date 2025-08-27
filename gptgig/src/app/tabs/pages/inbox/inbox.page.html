@@ -1,9 +1,17 @@
 <app-page-toolbar title="Inbox"></app-page-toolbar>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">inbox</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngFor="let msg of messages" class="message" [class.own]="msg.senderId === currentUserId">
+    <div class="bubble">
+      <p>{{ msg.content }}</p>
+      <small>{{ msg.timestamp | date: 'shortTime' }} <span *ngIf="msg.senderId === currentUserId">{{ msg.isRead ? '✔✔' : '✔' }}</span></small>
+    </div>
+  </div>
 </ion-content>
+
+<ion-footer>
+  <ion-item>
+    <ion-input [(ngModel)]="newMessage" placeholder="Type a message"></ion-input>
+    <ion-button (click)="send()" fill="clear">Send</ion-button>
+  </ion-item>
+</ion-footer>

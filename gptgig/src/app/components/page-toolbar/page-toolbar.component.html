@@ -4,10 +4,14 @@
       <ion-button routerLink="/tabs/home">
         <ion-icon name="home"></ion-icon>
       </ion-button>
+     
+    </ion-buttons>
+    <app-search (search)="onSearch($event)"></app-search>
+     <ion-buttons slot="end">
+     
       <ion-avatar (click)="openProfileModal()">
         <img [src]="avatarSrc" alt="Profile" />
       </ion-avatar>
     </ion-buttons>
-    <app-search (search)="onSearch($event)"></app-search>
   </ion-toolbar>
 </ion-header>

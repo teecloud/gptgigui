@@ -1,7 +1,21 @@
 <app-page-toolbar title="Home"></app-page-toolbar>
+<ion-split-pane when="xs" contentId="main">
+  <ion-menu contentId="main">
+    <ion-header>
+      <ion-toolbar color="tertiary">
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding"> Menu Content </ion-content>
+  </ion-menu>
 
-<ion-content [fullscreen]="true" class="home-content">
-  <div class="gutter">
+  <div class="ion-page" id="main">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Main View</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">  <div class="gutter">
    @let orders = (orders$ | async);
 @if (orders?.length) {
   <div class="orders-grid">
@@ -26,5 +40,9 @@
   <app-offers-carousel title="Trending near you" [cardType]="'rect'" [items]="trending"></app-offers-carousel>
 }
 
+  </div> </ion-content>
   </div>
-</ion-content>
+</ion-split-pane>
+<!-- <ion-content [fullscreen]="true" class="home-content">
+
+</ion-content> -->

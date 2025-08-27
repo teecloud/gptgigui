@@ -46,16 +46,20 @@
           <ion-item>
             <ion-textarea formControlName="description" label="Description" labelPlacement="stacked"></ion-textarea>
           </ion-item>
-          <ion-item lines="none" *ngIf="!isMobile">
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img [src]="svcForm.value.imageUrl || 'assets/placeholder-rect.jpg'" />
+            </ion-thumbnail>
             <ion-label>Image</ion-label>
-            <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />
-          </ion-item>
-          <ion-item lines="none" *ngIf="isMobile">
-            <ion-label>Image</ion-label>
-            <ion-button (click)="captureImage('imageUrl')">Take Photo</ion-button>
+            <ng-container *ngIf="!isMobile; else mobileImg">
+              <input type="file" accept="image/*" (change)="handleFile($event, 'imageUrl')" />
+            </ng-container>
+            <ng-template #mobileImg>
+              <ion-button (click)="captureImage('imageUrl')">Change Photo</ion-button>
+            </ng-template>
           </ion-item>
           <ion-button type="button" expand="block" (click)="goBack()">Back</ion-button>
-          <ion-button type="submit" expand="block">Save & Next</ion-button>
+          <ion-button type="submit" expand="block">{{ editingSvc ? 'Update' : 'Save & Next' }}</ion-button>
         </form>
       </ion-card-content>
     </ion-card>
@@ -75,35 +79,42 @@
           <ion-item>
             <ion-input type="number" formControlName="rating" label="Rating" labelPlacement="stacked"></ion-input>
           </ion-item>
-          <ion-item lines="none" *ngIf="!isMobile">
+          <ion-item lines="none">
+            <ion-thumbnail slot="start">
+              <img [src]="providerForm.value.avatarUrl || 'assets/placeholder-avatar.jpg'" />
+            </ion-thumbnail>
             <ion-label>Avatar</ion-label>
-            <input type="file" accept="image/*" (change)="handleFile($event, 'avatarUrl')" />
-          </ion-item>
-          <ion-item lines="none" *ngIf="isMobile">
-            <ion-label>Avatar</ion-label>
-            <ion-button (click)="captureImage('avatarUrl')">Take Photo</ion-button>
+            <ng-container *ngIf="!isMobile; else mobileAv">
+              <input type="file" accept="image/*" (change)="handleFile($event, 'avatarUrl')" />
+            </ng-container>
+            <ng-template #mobileAv>
+              <ion-button (click)="captureImage('avatarUrl')">Change Photo</ion-button>
+            </ng-template>
           </ion-item>
           <ion-button type="button" expand="block" (click)="goBack()">Back</ion-button>
-          <ion-button type="submit" expand="block">Save & Next</ion-button>
+          <ion-button type="submit" expand="block">{{ editingProv ? 'Update' : 'Save & Next' }}</ion-button>
         </form>
       </ion-card-content>
     </ion-card>
   </ng-container>
 
-  <!-- Step 4: Review current services -->
+  <!-- Step 4: Preview and edit -->
   <ng-container *ngIf="step === 4">
     <ion-card>
       <ion-card-header>
-        <ion-card-title>Current Services</ion-card-title>
+        <ion-card-title>Preview</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <ion-item *ngFor="let s of (services$ | async)">
-          <ion-thumbnail slot="start"><img [src]="s.imageUrl || 'assets/placeholder-rect.jpg'"></ion-thumbnail>
-          <ion-label>
-            <div>{{s.title}}</div>
-            <small>{{s.price ? ('$'+s.price) : ''}}</small>
-          </ion-label>
-        </ion-item>
+        <h2>Services</h2>
+        <div *ngFor="let s of (services$ | async)" class="preview-item">
+          <app-menu-card-rect [item]="s"></app-menu-card-rect>
+          <ion-button size="small" (click)="editService(s)">Edit</ion-button>
+        </div>
+        <h2>Providers</h2>
+        <div *ngFor="let p of (providers$ | async)" class="preview-item">
+          <app-menu-card-circ [provider]="p"></app-menu-card-circ>
+          <ion-button size="small" (click)="editProvider(p)">Edit</ion-button>
+        </div>
         <ion-button expand="block" (click)="goBack()">Back</ion-button>
       </ion-card-content>
     </ion-card>

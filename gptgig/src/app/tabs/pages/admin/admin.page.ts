@@ -4,8 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CatalogService } from '../../../services/catalog.service';
 import { PhotoService } from '../../../services/photo.service';
-import { App } from '@capacitor/app';
 import { PageToolbarComponent } from '../../../components/page-toolbar/page-toolbar.component';
+import { MenuCardRectComponent } from '../../../components/menu-card-rect/menu-card-rect.component';
+import { MenuCardCircComponent } from '../../../components/menu-card-circ/menu-card-circ.component';
+import { ServiceItem, Provider } from '../../../models/catalog.models';
 
 
 // Lightweight UUID (optional): if you prefer, replace with Date.now().toString()
@@ -13,7 +15,14 @@ import { PageToolbarComponent } from '../../../components/page-toolbar/page-tool
 @Component({
   standalone: true,
   selector: 'app-admin',
-  imports: [IonicModule, CommonModule, ReactiveFormsModule, PageToolbarComponent],
+  imports: [
+    IonicModule,
+    CommonModule,
+    ReactiveFormsModule,
+    PageToolbarComponent,
+    MenuCardRectComponent,
+    MenuCardCircComponent,
+  ],
   templateUrl: './admin.page.html',
   styleUrls: ['./admin.page.scss']
 })
@@ -30,6 +39,8 @@ export class AdminPage {
   providers$  = this.catalog.providers$;
 
   step = 1;
+  editingSvc = false;
+  editingProv = false;
 
   catForm = this.fb.group({
     id: [''],
@@ -70,7 +81,12 @@ export class AdminPage {
     this.catalog.upsertService(val as any).subscribe(() => {
       this.svcForm.reset();
       this.toastMsg('Service saved');
-      this.goNext();
+      if (this.editingSvc) {
+        this.editingSvc = false;
+        this.step = 4;
+      } else {
+        this.goNext();
+      }
     });
   }
 
@@ -80,7 +96,12 @@ export class AdminPage {
     this.catalog.upsertProvider(val as any).subscribe(() => {
       this.providerForm.reset({ rating: 4.8 });
       this.toastMsg('Provider saved');
-      this.goNext();
+      if (this.editingProv) {
+        this.editingProv = false;
+        this.step = 4;
+      } else {
+        this.goNext();
+      }
     });
   }
 
@@ -98,7 +119,13 @@ export class AdminPage {
   }
 
   goBack() {
-    if (this.step > 1) this.step--;
+    if (this.editingSvc || this.editingProv) {
+      this.editingSvc = false;
+      this.editingProv = false;
+      this.step = 4;
+    } else if (this.step > 1) {
+      this.step--;
+    }
   }
 
   async captureImage(control: 'imageUrl' | 'avatarUrl') {
@@ -112,5 +139,17 @@ export class AdminPage {
   private async toastMsg(message: string) {
     const t = await this.toast.create({ message, duration: 1200, position: 'bottom' });
     await t.present();
+  }
+
+  editService(s: ServiceItem) {
+    this.svcForm.patchValue(s as any);
+    this.editingSvc = true;
+    this.step = 2;
+  }
+
+  editProvider(p: Provider) {
+    this.providerForm.patchValue(p as any);
+    this.editingProv = true;
+    this.step = 3;
   }
 }

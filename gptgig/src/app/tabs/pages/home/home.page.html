@@ -2,6 +2,15 @@
 
 <ion-content [fullscreen]="true" class="home-content">
   <div class="gutter">
+   @let orders = (orders$ | async);
+@if (orders?.length) {
+  <div class="orders-grid">
+    @for (order of orders; track order.id) {
+      <app-order-card [order]="order"></app-order-card>
+    }
+  </div>
+}
+
    @let topPicks = (topPicks$ | async);
 @if (topPicks) {
   <app-offers-carousel title="Top picks for you" [cardType]="'rect'" [items]="topPicks"></app-offers-carousel>

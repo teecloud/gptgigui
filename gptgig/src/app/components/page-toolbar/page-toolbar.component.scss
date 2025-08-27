@@ -3,17 +3,13 @@ ion-toolbar {
   align-items: center;
 }
 
-ion-title {
-  flex: 0 0 auto;
-}
-
-.toolbar-search {
+app-search {
   flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.toolbar-search ion-searchbar {
+app-search ion-searchbar {
   width: 100%;
   max-width: 400px;
 }
@@ -21,4 +17,5 @@ ion-title {
 ion-avatar {
   width: 32px;
   height: 32px;
+  margin-left: 8px;
 }

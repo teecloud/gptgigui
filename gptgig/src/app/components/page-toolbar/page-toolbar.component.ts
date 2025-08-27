@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
 import { ProfileModalComponent } from '../profile-modal/profile-modal.component';
 import { SearchComponent } from '../search/search.component';
 import { SearchOptions } from '../../models/search-options';
@@ -8,7 +9,7 @@ import { SearchOptions } from '../../models/search-options';
 @Component({
   selector: 'app-page-toolbar',
   standalone: true,
-  imports: [IonicModule, CommonModule, SearchComponent],
+  imports: [IonicModule, CommonModule, SearchComponent, RouterLink],
   templateUrl: './page-toolbar.component.html',
   styleUrls: ['./page-toolbar.component.scss']
 })

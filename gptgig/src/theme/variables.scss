@@ -4,14 +4,16 @@
   /* Brand */
   --eagle-green: #004047; /* Eagle Green (approx) */
   --light-silver: #cacaca;
+  /* Pantone Color of the Year 2024 - Peach Fuzz */
+  --peach-fuzz: #ffbe98;
 
   /* Ionic color slots */
-  --ion-color-primary: var(--eagle-green);
-  --ion-color-primary-rgb: 0, 64, 71;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #00343a;
-  --ion-color-primary-tint: #165157;
+  --ion-color-primary: var(--peach-fuzz);
+  --ion-color-primary-rgb: 255, 190, 152;
+  --ion-color-primary-contrast: #000000;
+  --ion-color-primary-contrast-rgb: 0, 0, 0;
+  --ion-color-primary-shade: #e5ab88;
+  --ion-color-primary-tint: #ffc4a2;
 
   --ion-color-secondary: var(--light-silver);
   --ion-color-secondary-rgb: 202, 202, 202;

@@ -10,7 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "preappium": "appium driver install uiautomator2@4.2.9 || true",
+    "preappium": "appium driver install uiautomator2@4.2.9 || appium driver update uiautomator2",
     "appium": "wdio run wdio.appium.conf.js"
   },
   "private": true,

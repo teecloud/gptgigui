@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ProfileModalComponent } from './profile-modal.component';
 import { IonicModule } from '@ionic/angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProfileModalComponent', () => {
   let component: ProfileModalComponent;
@@ -8,7 +9,7 @@ describe('ProfileModalComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfileModalComponent, IonicModule.forRoot()],
+      imports: [ProfileModalComponent, IonicModule.forRoot(), RouterTestingModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(ProfileModalComponent);

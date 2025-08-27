@@ -12,7 +12,7 @@ export class AuthService {
   private http = inject(HttpClient);
   private router = inject(Router);
 
-  register(data: { email: string; password: string }): Observable<any> {
+  register(data: { email: string; password: string; vendorName?: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, data);
   }
 

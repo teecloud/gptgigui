@@ -1,5 +1,13 @@
 <ion-content class="ion-padding">
   <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
-  <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
-  <ion-button expand="block" (click)="register()">Register</ion-button>
+<ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+<ion-searchbar placeholder="Search vendors" [(ngModel)]="vendorQuery" (ionInput)="searchVendors()"></ion-searchbar>
+<ion-list>
+  <ion-item *ngFor="let v of vendors" (click)="selectVendor(v)">{{ v.name }}</ion-item>
+</ion-list>
+<ion-button fill="clear" (click)="addVendor()">
+  <ion-icon name="add-circle" slot="start"></ion-icon>
+  Lumerate My Business
+</ion-button>
+<ion-button expand="block" (click)="register()">Register</ion-button>
 </ion-content>

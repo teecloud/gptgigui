@@ -6,6 +6,7 @@
   --light-silver: #cacaca;
   /* Pantone Color of the Year 2024 - Peach Fuzz */
   --peach-fuzz: #ffbe98;
+  --mocha: #9d7651;
 
   /* Ionic color slots */
   --ion-color-primary: var(--peach-fuzz);
@@ -15,36 +16,36 @@
   --ion-color-primary-shade: #e5ab88;
   --ion-color-primary-tint: #ffc4a2;
 
-  --ion-color-secondary: var(--light-silver);
-  --ion-color-secondary-rgb: 202, 202, 202;
-  --ion-color-secondary-contrast: #080808;
-  --ion-color-secondary-contrast-rgb: 8, 8, 8;
-  --ion-color-secondary-shade: #b4b4b4;
-  --ion-color-secondary-tint: #d1d1d1;
+  --ion-color-secondary: var(--mocha);
+  --ion-color-secondary-rgb: 157, 118, 81;
+  --ion-color-secondary-contrast: #ffffff;
+  --ion-color-secondary-contrast-rgb: 255, 255, 255;
+  --ion-color-secondary-shade: #8d6a48;
+  --ion-color-secondary-tint: #a68362;
 
   /* Light defaults */
-  --ion-background-color: #d8d8d8;
+  --ion-background-color: #ffffff;
   --ion-text-color: #0b0c0d;
-  --ion-color-step-50: #cecfcf;
-  --ion-color-step-100: #c4c6c6;
-  --ion-color-step-150: #bbbcbd;
-  --ion-color-step-200: #b0b3b5;
-  --ion-color-step-250: #a6a9ab;
-  --ion-color-step-300: #9c9fa3;
-  --ion-color-step-350: #93969a;
-  --ion-color-step-400: #888d91;
-  --ion-color-step-450: #7e8288;
-  --ion-color-step-500: #747980;
-  --ion-color-step-550: #6b7077;
-  --ion-color-step-600: #60666e;
-  --ion-color-step-650: #565c66;
-  --ion-color-step-700: #4c535d;
-  --ion-color-step-750: #434955;
-  --ion-color-step-800: #38404b;
-  --ion-color-step-850: #2e3743;
-  --ion-color-step-900: #242d3a;
-  --ion-color-step-950: #1b2432;
-  --ion-color-step-1000: #111a28;
+  --ion-color-step-50: #f2f2f2;
+  --ion-color-step-100: #e6e6e6;
+  --ion-color-step-150: #d9d9d9;
+  --ion-color-step-200: #cccccc;
+  --ion-color-step-250: #bfbfbf;
+  --ion-color-step-300: #b3b3b3;
+  --ion-color-step-350: #a6a6a6;
+  --ion-color-step-400: #999999;
+  --ion-color-step-450: #8c8c8c;
+  --ion-color-step-500: #808080;
+  --ion-color-step-550: #737373;
+  --ion-color-step-600: #666666;
+  --ion-color-step-650: #595959;
+  --ion-color-step-700: #4d4d4d;
+  --ion-color-step-750: #404040;
+  --ion-color-step-800: #333333;
+  --ion-color-step-850: #262626;
+  --ion-color-step-900: #1a1a1a;
+  --ion-color-step-950: #0d0d0d;
+  --ion-color-step-1000: #000000;
 
   --radius-md: 12px;
   --radius-lg: 16px;

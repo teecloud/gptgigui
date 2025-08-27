@@ -6,6 +6,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { routes } from './app/app.routes';
 import { AppComponent } from './app/app.component';
 import { authInterceptor } from './app/services/auth.interceptor';
+import { offlineInterceptor } from './app/services/offline.interceptor';
 import { register } from 'swiper/element/bundle';
 register();
 bootstrapApplication(AppComponent, {
@@ -13,7 +14,7 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes, withPreloading(PreloadAllModules)),
-    provideHttpClient(withInterceptors([authInterceptor])),
+    provideHttpClient(withInterceptors([authInterceptor, offlineInterceptor])),
   ],
 });
 

@@ -1,15 +1,20 @@
 <div class="search-container">
   <ion-searchbar [value]="query" placeholder="Search" (ionInput)="onSearchChange($event)"></ion-searchbar>
-  <ion-list *ngIf="results.length" class="results-dropdown">
-    <ion-item button *ngFor="let r of results" (click)="selectResult(r)">
-      <ion-label>{{ r.title }}</ion-label>
-    </ion-item>
-  </ion-list>
+  @if (results.length) {
+    <ion-list class="results-dropdown">
+      @for (r of results; track r) {
+        <ion-item button (click)="selectResult(r)">
+          <ion-label>{{ r.title }}</ion-label>
+        </ion-item>
+      }
+    </ion-list>
+  }
   <ion-button fill="clear" (click)="toggleAdvanced()">
     <ion-icon name="options-outline"></ion-icon>
   </ion-button>
 </div>
-<div *ngIf="showAdvanced" class="advanced-options">
+@if (showAdvanced) {
+<div class="advanced-options">
   <ion-item>
     <ion-input type="number" placeholder="Min Price" [(ngModel)]="options.minPrice"></ion-input>
   </ion-item>
@@ -21,3 +26,4 @@
   </ion-item>
   <ion-button expand="block" (click)="emitSearch()">Apply Filters</ion-button>
 </div>
+}

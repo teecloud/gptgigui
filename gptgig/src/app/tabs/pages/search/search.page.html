@@ -2,11 +2,15 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngFor="let item of results">
-      <ion-label>
-        <h2>{{ item.title }}</h2>
-        <p *ngIf="item.price">Price: {{ item.price | currency }}</p>
-      </ion-label>
-    </ion-item>
+    @for (item of results; track item) {
+      <ion-item>
+        <ion-label>
+          <h2>{{ item.title }}</h2>
+          @if (item.price) {
+            <p>Price: {{ item.price | currency }}</p>
+          }
+        </ion-label>
+      </ion-item>
+    }
   </ion-list>
 </ion-content>

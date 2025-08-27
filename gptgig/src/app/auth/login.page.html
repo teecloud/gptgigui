@@ -3,5 +3,7 @@
   <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
   <ion-button expand="block" (click)="login()">Login</ion-button>
   <ion-button expand="block" fill="outline" (click)="goToRegister()">Sign Up</ion-button>
-  <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
+  @if (errorMessage) {
+    <ion-text color="danger">{{ errorMessage }}</ion-text>
+  }
 </ion-content>

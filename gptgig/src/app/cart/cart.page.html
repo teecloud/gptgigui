@@ -1,7 +1,7 @@
 <app-page-toolbar title="Cart"></app-page-toolbar>
 
 <ion-content>
-  <ng-container *ngIf="cart.selectedItem$ | async as item; else empty">
+  @if (cart.selectedItem$ | async; as item) {
     <ion-card>
       <ion-button
         class="close-btn"
@@ -18,21 +18,24 @@
       ></div>
       <ion-card-header>
         <ion-card-title>{{ item.title }}</ion-card-title>
-        <ion-card-subtitle *ngIf="item.price != null">
-          {{ item.price | currency:'USD':'symbol':'1.0-0' }}
-        </ion-card-subtitle>
+        @if (item.price != null) {
+          <ion-card-subtitle>
+            {{ item.price | currency:'USD':'symbol':'1.0-0' }}
+          </ion-card-subtitle>
+        }
       </ion-card-header>
-      <ion-card-content *ngIf="item.selectedSlot">
-        <p>Scheduled at {{ item.selectedSlot }}</p>
-      </ion-card-content>
+      @if (item.selectedSlot) {
+        <ion-card-content>
+          <p>Scheduled at {{ item.selectedSlot }}</p>
+        </ion-card-content>
+      }
     </ion-card>
     <app-payment-button [amount]="(item.price || 0) * 100"></app-payment-button>
-  </ng-container>
-  <ng-template #empty>
+  } @else {
     <ion-list>
       <ion-item>
         <ion-label>Your cart is empty.</ion-label>
       </ion-item>
     </ion-list>
-  </ng-template>
+  }
 </ion-content>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonItem, IonInput, IonButton } from '@ionic/angular/standalone';
+import { IonContent, IonFooter, IonItem, IonInput, IonButton } from '@ionic/angular/standalone';
 import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
 import { MessageService } from '../../../services/message.service';
 import { Message } from '../../../models/message';
@@ -11,7 +11,7 @@ import { Message } from '../../../models/message';
   templateUrl: './inbox.page.html',
   styleUrls: ['./inbox.page.scss'],
   standalone: true,
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, IonFooter, IonItem, IonInput, IonButton, CommonModule, FormsModule, PageToolbarComponent]
+  imports: [IonContent, IonFooter, IonItem, IonInput, IonButton, CommonModule, FormsModule, PageToolbarComponent]
 })
 export class InboxPage implements OnInit {
   messages: Message[] = [];

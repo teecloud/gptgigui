@@ -1,5 +1,10 @@
 <div class="search-container">
   <ion-searchbar [value]="query" placeholder="Search" (ionInput)="onSearchChange($event)"></ion-searchbar>
+  <ion-list *ngIf="results.length" class="results-dropdown">
+    <ion-item button *ngFor="let r of results" (click)="selectResult(r)">
+      <ion-label>{{ r.title }}</ion-label>
+    </ion-item>
+  </ion-list>
   <ion-button fill="clear" (click)="toggleAdvanced()">
     <ion-icon name="options-outline"></ion-icon>
   </ion-button>

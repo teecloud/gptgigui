@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
   standalone: true,
-  imports: [FormsModule, NgIf, IonContent, IonInput, IonButton, IonText]
+  imports: [FormsModule, IonContent, IonInput, IonButton, IonText]
 })
 export class LoginPage {
   email = '';

@@ -1,8 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Cart</ion-title>
-  </ion-toolbar>
-</ion-header>
+<app-page-toolbar title="Cart"></app-page-toolbar>
 
 <ion-content>
   <ng-container *ngIf="cart.selectedItem$ | async as item; else empty">

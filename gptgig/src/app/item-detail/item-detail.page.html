@@ -13,6 +13,12 @@
     <div class="price" *ngIf="item.price">{{ item.price | currency:'USD':'symbol' }}</div>
     <div class="description" *ngIf="item.description">{{ item.description }}</div>
   </div>
+  <ion-item *ngIf="slots.length">
+    <ion-label>Time</ion-label>
+    <ion-select [(ngModel)]="selectedSlot">
+      <ion-select-option *ngFor="let s of slots" [value]="s">{{ s }}</ion-select-option>
+    </ion-select>
+  </ion-item>
   <ion-button expand="block" color="primary" (click)="addToCart()">Add to Cart</ion-button>
 </ion-content>
 

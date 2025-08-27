@@ -14,6 +14,8 @@ export interface ServiceItem {
   tags?: string[];
   rating?: number;
   description?: string;
+  availableSlots?: string[];
+  selectedSlot?: string;
 }
 
 export interface Provider {

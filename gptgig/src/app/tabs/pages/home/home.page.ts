@@ -1,22 +1,31 @@
-import { Component, computed, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { OffersCarouselComponent } from '../../../components/offers-carousel/offers-carousel.component';
 import { CatalogService } from '../../../services/catalog.service';
+import { OrderService } from '../../../services/order.service';
 import { map } from 'rxjs/operators';
-import { RouterLink } from '@angular/router';
 import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
+import { OrderCardComponent } from '../../../components/order-card/order-card.component';
 
 @Component({
   standalone: true,
   selector: 'app-home',
-  imports: [IonicModule, CommonModule, AsyncPipe, OffersCarouselComponent, PageToolbarComponent],
+  imports: [
+    IonicModule,
+    CommonModule,
+    AsyncPipe,
+    OffersCarouselComponent,
+    PageToolbarComponent,
+    OrderCardComponent,
+  ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage {
   private catalog = inject(CatalogService);
+  private orders = inject(OrderService);
 
   services$  = this.catalog.services$;
   providers$ = this.catalog.providers$;
@@ -24,4 +33,5 @@ export class HomePage {
   topPicks$ = this.services$.pipe(map(list => list.slice(0, 10)));
   trending$ = this.services$.pipe(map(list => [...list].reverse()));
   topProviders$ = this.providers$.pipe(map(list => list.slice(0, 10)));
+  orders$ = this.orders.getVendorQueue();
 }

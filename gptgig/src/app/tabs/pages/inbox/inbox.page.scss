@@ -1,0 +1,33 @@
+:host {
+  ion-content {
+    --padding-start: 10px;
+    --padding-end: 10px;
+  }
+
+  .message {
+    display: flex;
+    margin: 4px 0;
+    justify-content: flex-start;
+  }
+
+  .message.own {
+    justify-content: flex-end;
+  }
+
+  .bubble {
+    background: #e0e0e0;
+    border-radius: 8px;
+    padding: 8px;
+    max-width: 70%;
+  }
+
+  .message.own .bubble {
+    background: #cfe9ff;
+  }
+
+  .bubble small {
+    display: block;
+    text-align: right;
+    font-size: 0.7em;
+  }
+}

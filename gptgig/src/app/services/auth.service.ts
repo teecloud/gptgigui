@@ -1,5 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
@@ -8,7 +9,8 @@ export class AuthService {
   private baseUrl = environment.apiUrl + '/auth';
   private tokenKey = 'token';
 
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private router = inject(Router);
 
   register(data: { email: string; password: string }): Observable<any> {
     return this.http.post(`${this.baseUrl}/register`, data);
@@ -27,7 +29,11 @@ export class AuthService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getToken();
+    const authed = !!this.getToken();
+    if (!authed) {
+      this.router.navigate(['/login']);
+    }
+    return authed;
   }
 
   logout(): void {

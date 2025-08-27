@@ -1,18 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { SearchPage } from './search.page';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SearchComponent } from './search.component';
 import { IonicModule } from '@ionic/angular';
 
-describe('SearchPage', () => {
-  let component: SearchPage;
-  let fixture: ComponentFixture<SearchPage>;
+describe('SearchComponent', () => {
+  let component: SearchComponent;
+  let fixture: ComponentFixture<SearchComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchPage, HttpClientTestingModule, IonicModule.forRoot()]
+      imports: [SearchComponent, IonicModule.forRoot()]
     }).compileComponents();
 
-    fixture = TestBed.createComponent(SearchPage);
+    fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

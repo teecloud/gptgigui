@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using System.Text;
 using gptgigapi.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace gptgigapi.Controllers
 {
@@ -26,6 +27,7 @@ namespace gptgigapi.Controllers
         }
 
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterDto dto)
         {
             var user = new IdentityUser { UserName = dto.Email, Email = dto.Email, PhoneNumber = dto.PhoneNumber };
@@ -43,6 +45,7 @@ namespace gptgigapi.Controllers
         }
 
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginDto dto)
         {
             var user = await _userManager.FindByEmailAsync(dto.Email);

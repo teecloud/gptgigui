@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: 'login.page.html',
+  styleUrls: ['login.page.scss'],
   standalone: true,
   imports: [FormsModule, IonContent, IonInput, IonButton, IonText]
 })
@@ -32,5 +33,9 @@ export class LoginPage {
         }
       },
     });
+  }
+
+  goToRegister() {
+    this.router.navigateByUrl('/register');
   }
 }

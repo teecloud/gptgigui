@@ -73,5 +73,8 @@
     "typescript": "~5.8.0",
     "webdriverio": "^8.32.1"
   },
+  "overrides": {
+    "ts-node": "^10.9.2"
+  },
   "description": "An Ionic project"
 }

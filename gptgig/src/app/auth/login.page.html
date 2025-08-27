@@ -2,4 +2,5 @@
   <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
   <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
   <ion-button expand="block" (click)="login()">Login</ion-button>
+  <ion-text color="danger" *ngIf="errorMessage">{{ errorMessage }}</ion-text>
 </ion-content>

@@ -10,6 +10,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
+    "preappium": "appium driver install uiautomator2@4.2.9 || true",
     "appium": "wdio run wdio.appium.conf.js"
   },
   "private": true,
@@ -59,6 +60,7 @@
     "@wdio/mocha-framework": "^8.32.1",
     "@wdio/spec-reporter": "^8.32.1",
     "appium": "^2.11.2",
+    "appium-uiautomator2-driver": "^4.2.9",
     "eslint": "^9.16.0",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-jsdoc": "^48.2.1",

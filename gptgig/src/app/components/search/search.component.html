@@ -1,0 +1,18 @@
+<div class="search-container">
+  <ion-searchbar [value]="query" placeholder="Search" (ionInput)="onSearchChange($event)"></ion-searchbar>
+  <ion-button fill="clear" (click)="toggleAdvanced()">
+    <ion-icon name="options-outline"></ion-icon>
+  </ion-button>
+</div>
+<div *ngIf="showAdvanced" class="advanced-options">
+  <ion-item>
+    <ion-input type="number" placeholder="Min Price" [(ngModel)]="options.minPrice"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="Max Price" [(ngModel)]="options.maxPrice"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-input type="number" placeholder="Min Rating" [(ngModel)]="options.minRating"></ion-input>
+  </ion-item>
+  <ion-button expand="block" (click)="emitSearch()">Apply Filters</ion-button>
+</div>

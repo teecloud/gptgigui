@@ -1,17 +1,10 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-buttons slot="start">
-     
-   
-
-   
-      <ion-searchbar placeholder="Search" (ionInput)="onSearch($event)"></ion-searchbar>
-  
+    <app-search (search)="onSearch($event)"></app-search>
+    <ion-buttons slot="end">
+      <ion-avatar (click)="openProfileModal()">
+        <img [src]="avatarSrc" alt="Profile" />
+      </ion-avatar>
     </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-avatar (click)="openProfileModal()">
-          <img [src]="avatarSrc" alt="Profile" />
-        </ion-avatar>
-      </ion-buttons>
   </ion-toolbar>
 </ion-header>

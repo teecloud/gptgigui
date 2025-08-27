@@ -11,6 +11,10 @@
   ion-card-header {
     padding: 12px;
   }
-  ion-card-title { font-size: 14px; line-height: 1.25; }
+  ion-card-title {
+    font-size: 14px;
+    line-height: 1.25;
+    color: var(--ion-color-primary);
+  }
   ion-card-subtitle { color: var(--ion-color-medium); font-size: 12px; }
 }

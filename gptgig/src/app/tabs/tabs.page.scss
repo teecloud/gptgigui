@@ -3,6 +3,6 @@ ion-tab-bar {
   --background: var(--ion-color-step-1000, #0e1111);
   --color: var(--ion-color-medium);
   --color-selected: var(--ion-color-primary);
-  border-top: 0;
+  border-top: 2px solid var(--ion-color-primary);
   padding-bottom: env(safe-area-inset-bottom);
 }

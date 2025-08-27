@@ -1,0 +1,33 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Social Feeds</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+    <ion-row>
+      <ion-col size="12" size-md="6" *ngFor="let platform of platforms">
+        <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <ion-icon [name]="platform.icon"></ion-icon>
+              {{ platform.name }}
+            </ion-card-title>
+          </ion-card-header>
+          <ion-card-content>
+            <ng-container *ngIf="!platform.loggedIn">
+              <ion-button (click)="login(platform)">Login</ion-button>
+            </ng-container>
+            <ng-container *ngIf="platform.loggedIn">
+              <ion-button size="small" (click)="create(platform)">Create</ion-button>
+              <ion-button size="small" (click)="read(platform)">Read</ion-button>
+              <ion-button size="small" (click)="update(platform)">Update</ion-button>
+              <ion-button size="small" color="danger" (click)="delete(platform)">Delete</ion-button>
+            </ng-container>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

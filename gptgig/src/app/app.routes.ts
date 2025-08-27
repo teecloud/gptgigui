@@ -18,6 +18,13 @@ export const routes: Routes = [
     loadComponent: () => import('./cart/cart.page').then((m) => m.CartPage),
   },
   {
+    path: 'social-feeds',
+    loadComponent: () =>
+      import('./social-feeds/social-feeds.page').then(
+        (m) => m.SocialFeedsPage,
+      ),
+  },
+  {
     path: 'item/:id',
     loadComponent: () =>
       import('./item-detail/item-detail.page').then((m) => m.ItemDetailPage),

@@ -29,6 +29,8 @@ export class AdminPage {
   services$   = this.catalog.services$;
   providers$  = this.catalog.providers$;
 
+  step = 1;
+
   catForm = this.fb.group({
     id: [''],
     name: ['', Validators.required],
@@ -58,6 +60,7 @@ export class AdminPage {
     this.catalog.upsertCategory(val as any).subscribe(() => {
       this.catForm.reset({ icon: 'briefcase' });
       this.toastMsg('Category saved');
+      this.goNext();
     });
   }
 
@@ -67,6 +70,7 @@ export class AdminPage {
     this.catalog.upsertService(val as any).subscribe(() => {
       this.svcForm.reset();
       this.toastMsg('Service saved');
+      this.goNext();
     });
   }
 
@@ -76,6 +80,7 @@ export class AdminPage {
     this.catalog.upsertProvider(val as any).subscribe(() => {
       this.providerForm.reset({ rating: 4.8 });
       this.toastMsg('Provider saved');
+      this.goNext();
     });
   }
 
@@ -86,6 +91,14 @@ export class AdminPage {
       if (control === 'imageUrl') this.svcForm.patchValue({ imageUrl: base64 });
       if (control === 'avatarUrl') this.providerForm.patchValue({ avatarUrl: base64 });
     }
+  }
+
+  goNext() {
+    if (this.step < 4) this.step++;
+  }
+
+  goBack() {
+    if (this.step > 1) this.step--;
   }
 
   async captureImage(control: 'imageUrl' | 'avatarUrl') {

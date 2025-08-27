@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 import { IonContent, IonInput, IonButton, IonText } from '@ionic/angular/standalone';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -9,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: 'login.page.html',
   styleUrls: ['login.page.scss'],
   standalone: true,
-  imports: [FormsModule, IonContent, IonInput, IonButton, IonText]
+  imports: [FormsModule, NgIf, IonContent, IonInput, IonButton, IonText]
 })
 export class LoginPage {
   email = '';

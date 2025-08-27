@@ -1,17 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { IonicModule } from '@ionic/angular';
 
 interface SocialPlatform {
   name: string;
   icon: string;
   loggedIn: boolean;
+  unavailable?: boolean;
 }
 
 @Component({
   selector: 'app-social-feeds',
   standalone: true,
-  imports: [IonicModule, CommonModule],
+  imports: [IonicModule, CommonModule, HttpClientModule],
   templateUrl: './social-feeds.page.html',
   styleUrls: ['./social-feeds.page.scss'],
 })
@@ -26,8 +28,11 @@ export class SocialFeedsPage {
     { name: 'YouTube', icon: 'logo-youtube', loggedIn: false },
   ];
 
+  private http = inject(HttpClient);
+
   login(platform: SocialPlatform): void {
     platform.loggedIn = true;
+    platform.unavailable = false;
   }
 
   create(platform: SocialPlatform): void {
@@ -35,7 +40,17 @@ export class SocialFeedsPage {
   }
 
   read(platform: SocialPlatform): void {
-    console.log(`read on ${platform.name}`);
+    platform.unavailable = false;
+    this.http
+      .get(`/api/social-feeds/${platform.name.toLowerCase()}`)
+      .subscribe({
+        next: (data) => {
+          console.log(`read on ${platform.name}`, data);
+        },
+        error: () => {
+          platform.unavailable = true;
+        },
+      });
   }
 
   update(platform: SocialPlatform): void {

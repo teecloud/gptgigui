@@ -6,6 +6,8 @@ using System.Security.Claims;
 using System.Text;
 using gptgigapi.Services;
 using Microsoft.AspNetCore.Authorization;
+using gptgigapi.Data;
+using gptgigapi.Models;
 
 namespace gptgigapi.Controllers
 {
@@ -17,13 +19,15 @@ namespace gptgigapi.Controllers
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
         private readonly INotificationService _notificationService;
+        private readonly ApplicationDbContext _context;
 
-        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration, INotificationService notificationService)
+        public AuthController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IConfiguration configuration, INotificationService notificationService, ApplicationDbContext context)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _configuration = configuration;
             _notificationService = notificationService;
+            _context = context;
         }
 
         [HttpPost("register")]
@@ -40,6 +44,12 @@ namespace gptgigapi.Controllers
             if (!string.IsNullOrWhiteSpace(dto.PhoneNumber))
             {
                 await _notificationService.SendSmsAsync(dto.PhoneNumber, "Thank you for registering!");
+            }
+            if (!string.IsNullOrWhiteSpace(dto.VendorName))
+            {
+                var vendor = new VendorProfile { Name = dto.VendorName, UserId = user.Id };
+                _context.VendorProfiles.Add(vendor);
+                await _context.SaveChangesAsync();
             }
             return Ok();
         }
@@ -83,6 +93,6 @@ namespace gptgigapi.Controllers
         }
     }
 
-    public record RegisterDto(string Email, string Password, string? PhoneNumber);
+    public record RegisterDto(string Email, string Password, string? PhoneNumber, string? VendorName);
     public record LoginDto(string Email, string Password);
 }

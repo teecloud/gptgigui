@@ -1,0 +1,39 @@
+name: Build Android App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: gptgig
+        run: npm ci
+
+      - name: Build web assets
+        working-directory: gptgig
+        run: npm run build -- --configuration=production
+
+      - name: Sync Capacitor for Android
+        working-directory: gptgig
+        run: npx cap sync android
+
+      - name: Build Android release
+        working-directory: gptgig/android
+        run: ./gradlew assembleRelease
+
+      - name: Upload Android artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: android-release-apk
+          path: gptgig/android/app/build/outputs/apk/release/app-release.apk

@@ -1,0 +1,45 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  ios:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        working-directory: gptgig
+        run: npm ci
+
+      - name: Build web assets
+        working-directory: gptgig
+        run: npm run build -- --configuration=production
+
+      - name: Sync Capacitor for iOS
+        working-directory: gptgig
+        run: npx cap sync ios
+
+      - name: Build iOS app
+        working-directory: gptgig/ios/App
+        run: xcodebuild -scheme App -configuration Release -sdk iphonesimulator -derivedDataPath build
+
+      - name: Package iOS app
+        working-directory: gptgig/ios/App/build/Build/Products/Release-iphonesimulator
+        run: |
+          mkdir Payload
+          cp -R App.app Payload/
+          zip -r App.ipa Payload
+      - name: Upload iOS artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-release-ipa
+          path: gptgig/ios/App/build/Build/Products/Release-iphonesimulator/App.ipa

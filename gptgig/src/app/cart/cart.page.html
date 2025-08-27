@@ -7,7 +7,19 @@
 <ion-content>
   <ng-container *ngIf="cart.selectedItem$ | async as item; else empty">
     <ion-card>
-      <div class="image" [style.backgroundImage]="'url(' + (item.imageUrl || 'assets/placeholder-rect.jpg') + ')'"></div>
+      <ion-button
+        class="close-btn"
+        fill="clear"
+        size="small"
+        aria-label="Close"
+        (click)="cart.clear()"
+      >
+        <ion-icon name="close"></ion-icon>
+      </ion-button>
+      <div
+        class="image"
+        [style.backgroundImage]="'url(' + (item.imageUrl || 'assets/placeholder-rect.jpg') + ')'"
+      ></div>
       <ion-card-header>
         <ion-card-title>{{ item.title }}</ion-card-title>
         <ion-card-subtitle *ngIf="item.price != null">

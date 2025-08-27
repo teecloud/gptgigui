@@ -17,3 +17,8 @@
 # Logs
 *.log
 
+# gptgigapi generated directories
+/gptgigapi/bin/
+/gptgigapi/obj/
+/gptgigapi/.vs/
+/gptgigapi/*.csproj.user

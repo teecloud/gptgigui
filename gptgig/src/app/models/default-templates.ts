@@ -44,5 +44,39 @@ export const DEFAULT_TEMPLATES: Record<string, CatalogTemplate> = {
     providers: [
       { id: 'pro-tutor', name: 'Tutor', rating: 5 }
     ]
+  },
+  homecook: {
+    categories: [
+      { id: 'cat-home', name: 'Home Cooking', icon: 'restaurant' }
+    ],
+    services: [
+      {
+        id: 'svc-meal',
+        title: 'Home-cooked Meal',
+        categoryId: 'cat-home',
+        price: 25,
+        availableSlots: ['17:00', '18:00', '19:00']
+      }
+    ],
+    providers: [
+      { id: 'pro-cook', name: 'Home Cook', rating: 4.8 }
+    ]
+  },
+  foodtruck: {
+    categories: [
+      { id: 'cat-truck', name: 'Food Truck', icon: 'bus' }
+    ],
+    services: [
+      {
+        id: 'svc-truck',
+        title: 'Food Truck Catering',
+        categoryId: 'cat-truck',
+        price: 300,
+        availableSlots: ['11:00', '13:00', '15:00']
+      }
+    ],
+    providers: [
+      { id: 'pro-truck', name: 'Food Truck', rating: 4.9 }
+    ]
   }
 };

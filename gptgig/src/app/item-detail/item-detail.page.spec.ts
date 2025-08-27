@@ -6,6 +6,7 @@ import { BehaviorSubject } from 'rxjs';
 import { ItemDetailPage } from './item-detail.page';
 import { CatalogService } from '../services/catalog.service';
 import { CartService } from '../services/cart.service';
+import { SchedulerService } from '../services/scheduler.service';
 
 describe('ItemDetailPage', () => {
   let component: ItemDetailPage;
@@ -18,7 +19,8 @@ describe('ItemDetailPage', () => {
       providers: [
         { provide: ActivatedRoute, useValue: { snapshot: { paramMap: { get: () => '1' } } } },
         { provide: CatalogService, useValue: { services$ } },
-        { provide: CartService, useValue: { selectItem: () => {} } }
+        { provide: CartService, useValue: { selectItem: () => {} } },
+        { provide: SchedulerService, useValue: { generateSlots: () => ['09:00'] } }
       ]
     }).compileComponents();
 

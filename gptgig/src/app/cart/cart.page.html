@@ -22,6 +22,9 @@
           {{ item.price | currency:'USD':'symbol':'1.0-0' }}
         </ion-card-subtitle>
       </ion-card-header>
+      <ion-card-content *ngIf="item.selectedSlot">
+        <p>Scheduled at {{ item.selectedSlot }}</p>
+      </ion-card-content>
     </ion-card>
     <app-payment-button [amount]="(item.price || 0) * 100"></app-payment-button>
   </ng-container>

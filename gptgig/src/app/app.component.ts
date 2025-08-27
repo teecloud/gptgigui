@@ -10,7 +10,7 @@ import { ToastService } from './services/toast.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   constructor() {
-    document.documentElement.classList.add('dark');
+   // document.documentElement.classList.add('dark');
   }
   private toast = inject(ToastService);
   private offline = inject(OfflineService);

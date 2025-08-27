@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IonicModule } from '@ionic/angular';
-import { OffersCarouselComponent } from './offers-carousel.component';
+import { OffersFeedModalComponent } from './offers-feed-modal.component';
 
-describe('OffersCarouselComponent', () => {
-  let component: OffersCarouselComponent;
-  let fixture: ComponentFixture<OffersCarouselComponent>;
+describe('OffersFeedModalComponent', () => {
+  let component: OffersFeedModalComponent;
+  let fixture: ComponentFixture<OffersFeedModalComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OffersCarouselComponent, IonicModule.forRoot()],
+      imports: [OffersFeedModalComponent, IonicModule.forRoot()],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(OffersCarouselComponent);
+    fixture = TestBed.createComponent(OffersFeedModalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

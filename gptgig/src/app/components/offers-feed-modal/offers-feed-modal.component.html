@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>{{ title }}</ion-title>
+    <ion-buttons slot="end">
+      <ion-button fill="clear" (click)="dismiss()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="feed">
+    <ng-container *ngFor="let it of feedItems">
+      <ng-container [ngTemplateOutlet]="cardType === 'rect' ? rect : circ"
+                    [ngTemplateOutletContext]="{ $implicit: it }"></ng-container>
+    </ng-container>
+  </div>
+  <ion-infinite-scroll (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles"></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
+
+<ng-template #rect let-svc>
+  <app-menu-card-rect [item]="svc"></app-menu-card-rect>
+</ng-template>
+
+<ng-template #circ let-prov>
+  <app-menu-card-circ [provider]="prov"></app-menu-card-circ>
+</ng-template>

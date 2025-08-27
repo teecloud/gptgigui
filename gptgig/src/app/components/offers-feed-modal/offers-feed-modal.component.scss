@@ -1,0 +1,10 @@
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}

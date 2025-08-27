@@ -4,13 +4,10 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CatalogService } from '../../../services/catalog.service';
 import { PhotoService } from '../../../services/photo.service';
-import { PageToolbarComponent } from '../../../components/page-toolbar/page-toolbar.component';
 import { MenuCardRectComponent } from '../../../components/menu-card-rect/menu-card-rect.component';
 import { MenuCardCircComponent } from '../../../components/menu-card-circ/menu-card-circ.component';
 import { ServiceItem, Provider } from '../../../models/catalog.models';
-
-
-// Lightweight UUID (optional): if you prefer, replace with Date.now().toString()
+import { DEFAULT_TEMPLATES } from '../../../models/default-templates';
 
 @Component({
   standalone: true,
@@ -19,7 +16,6 @@ import { ServiceItem, Provider } from '../../../models/catalog.models';
     IonicModule,
     CommonModule,
     ReactiveFormsModule,
-    PageToolbarComponent,
     MenuCardRectComponent,
     MenuCardCircComponent,
   ],
@@ -38,9 +34,12 @@ export class AdminPage {
   services$   = this.catalog.services$;
   providers$  = this.catalog.providers$;
 
-  step = 1;
+  section: 'templates' | 'categories' | 'services' | 'providers' | 'preview' = 'templates';
   editingSvc = false;
   editingProv = false;
+  selectedTemplate: string | null = null;
+  templates = DEFAULT_TEMPLATES;
+  templateKeys = Object.keys(DEFAULT_TEMPLATES);
 
   catForm = this.fb.group({
     id: [''],
@@ -65,13 +64,30 @@ export class AdminPage {
     avatarUrl: ['']
   });
 
+  constructor() {
+    const saved = JSON.parse(localStorage.getItem('adminState') || '{}');
+    if (saved.section) this.section = saved.section;
+    if (saved.selectedTemplate) {
+      this.selectedTemplate = saved.selectedTemplate;
+      const tmpl = this.templates[this.selectedTemplate as string];
+      if (tmpl) this.catalog.loadTemplate(tmpl);
+    }
+    if (saved.catForm) this.catForm.patchValue(saved.catForm);
+    if (saved.svcForm) this.svcForm.patchValue(saved.svcForm);
+    if (saved.providerForm) this.providerForm.patchValue(saved.providerForm);
+
+    this.catForm.valueChanges.subscribe(() => this.saveState());
+    this.svcForm.valueChanges.subscribe(() => this.saveState());
+    this.providerForm.valueChanges.subscribe(() => this.saveState());
+  }
+
   async onCatSubmit() {
     const val = this.catForm.value;
-    if (!val.id) val.id = 'cat-' +  Date.now().toString();
+    if (!val.id) val.id = 'cat-' + Date.now().toString();
     this.catalog.upsertCategory(val as any).subscribe(() => {
       this.catForm.reset({ icon: 'briefcase' });
       this.toastMsg('Category saved');
-      this.goNext();
+      this.saveState();
     });
   }
 
@@ -83,10 +99,8 @@ export class AdminPage {
       this.toastMsg('Service saved');
       if (this.editingSvc) {
         this.editingSvc = false;
-        this.step = 4;
-      } else {
-        this.goNext();
       }
+      this.saveState();
     });
   }
 
@@ -98,10 +112,8 @@ export class AdminPage {
       this.toastMsg('Provider saved');
       if (this.editingProv) {
         this.editingProv = false;
-        this.step = 4;
-      } else {
-        this.goNext();
       }
+      this.saveState();
     });
   }
 
@@ -111,20 +123,6 @@ export class AdminPage {
       const base64 = await this.catalog.toBase64(input.files[0]);
       if (control === 'imageUrl') this.svcForm.patchValue({ imageUrl: base64 });
       if (control === 'avatarUrl') this.providerForm.patchValue({ avatarUrl: base64 });
-    }
-  }
-
-  goNext() {
-    if (this.step < 4) this.step++;
-  }
-
-  goBack() {
-    if (this.editingSvc || this.editingProv) {
-      this.editingSvc = false;
-      this.editingProv = false;
-      this.step = 4;
-    } else if (this.step > 1) {
-      this.step--;
     }
   }
 
@@ -144,12 +142,35 @@ export class AdminPage {
   editService(s: ServiceItem) {
     this.svcForm.patchValue(s as any);
     this.editingSvc = true;
-    this.step = 2;
+    this.setSection('services');
   }
 
   editProvider(p: Provider) {
     this.providerForm.patchValue(p as any);
     this.editingProv = true;
-    this.step = 3;
+    this.setSection('providers');
+  }
+
+  setSection(sec: typeof this.section) {
+    this.section = sec;
+    this.saveState();
+  }
+
+  selectTemplate(key: string) {
+    this.selectedTemplate = key;
+    const tmpl = this.templates[key];
+    if (tmpl) this.catalog.loadTemplate(tmpl);
+    this.saveState();
+  }
+
+  private saveState() {
+    const state = {
+      section: this.section,
+      selectedTemplate: this.selectedTemplate,
+      catForm: this.catForm.value,
+      svcForm: this.svcForm.value,
+      providerForm: this.providerForm.value
+    };
+    localStorage.setItem('adminState', JSON.stringify(state));
   }
 }

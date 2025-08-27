@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ServiceCategory, ServiceItem, Provider } from '../models/catalog.models';
+import { ServiceCategory, ServiceItem, Provider, CatalogTemplate } from '../models/catalog.models';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -13,19 +13,35 @@ export class CatalogService {
   providers$  = new BehaviorSubject<Provider[]>([]);
 
   constructor(private http: HttpClient) {
+    const saved = localStorage.getItem('catalogTemplateData');
+    if (saved) {
+      const data = JSON.parse(saved) as CatalogTemplate;
+      this.categories$.next(data.categories);
+      this.services$.next(data.services);
+      this.providers$.next(data.providers);
+    }
     this.refresh();
   }
 
   /** Load catalog items from backend API */
   refresh() {
     this.http.get<ServiceCategory[]>(`${this.baseUrl}/categories`)
-      .subscribe(data => this.categories$.next(data));
+      .subscribe(data => {
+        this.categories$.next(data);
+        this.saveLocal();
+      });
 
     this.http.get<ServiceItem[]>(`${this.baseUrl}/services`)
-      .subscribe(data => this.services$.next(data));
+      .subscribe(data => {
+        this.services$.next(data);
+        this.saveLocal();
+      });
 
     this.http.get<Provider[]>(`${this.baseUrl}/providers`)
-      .subscribe(data => this.providers$.next(data));
+      .subscribe(data => {
+        this.providers$.next(data);
+        this.saveLocal();
+      });
   }
 
   /** Upsert category via backend */
@@ -44,6 +60,22 @@ export class CatalogService {
   upsertProvider(p: Provider) {
     return this.http.post<Provider>(`${this.baseUrl}/providers`, p)
       .pipe(tap(() => this.refresh()));
+  }
+
+  loadTemplate(t: CatalogTemplate) {
+    this.categories$.next(t.categories);
+    this.services$.next(t.services);
+    this.providers$.next(t.providers);
+    this.saveLocal();
+  }
+
+  private saveLocal() {
+    const data: CatalogTemplate = {
+      categories: this.categories$.value,
+      services: this.services$.value,
+      providers: this.providers$.value
+    };
+    localStorage.setItem('catalogTemplateData', JSON.stringify(data));
   }
 
   // Convert uploaded image file to Base64 URL

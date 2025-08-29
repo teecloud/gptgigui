@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace gptgigapi.Models
 {
-    public class VendorProfile
+    public class VendorProfile : ITenantEntity
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -12,5 +12,7 @@ namespace gptgigapi.Models
         public IdentityUser? User { get; set; }
 
         public ICollection<CustomerProfile>? Customers { get; set; }
+
+        public string TenantId { get; set; } = string.Empty;
     }
 }

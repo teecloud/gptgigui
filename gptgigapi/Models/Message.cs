@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace gptgigapi.Models
 {
-    public class Message
+    public class Message : ITenantEntity
     {
         [Key]
         public int Id { get; set; }
@@ -15,5 +15,7 @@ namespace gptgigapi.Models
         public string Content { get; set; } = string.Empty;
         public DateTime Timestamp { get; set; }
         public bool IsRead { get; set; }
+
+        public string TenantId { get; set; } = string.Empty;
     }
 }

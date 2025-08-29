@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace gptgigapi.Models
 {
-    public class CustomerProfile
+    public class CustomerProfile : ITenantEntity
     {
         public int Id { get; set; }
         public string DisplayName { get; set; } = string.Empty;
@@ -12,5 +12,7 @@ namespace gptgigapi.Models
 
         public int VendorProfileId { get; set; }
         public VendorProfile? VendorProfile { get; set; }
+
+        public string TenantId { get; set; } = string.Empty;
     }
 }

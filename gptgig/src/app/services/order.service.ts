@@ -11,6 +11,7 @@ export class OrderService {
       customer: 'Alice',
       status: 'pending',
       imageUrl: 'assets/placeholder-rect.jpg',
+      scheduledTime: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
     },
     {
       id: '2',
@@ -18,6 +19,7 @@ export class OrderService {
       customer: 'Bob',
       status: 'pending',
       imageUrl: 'assets/placeholder-rect.jpg',
+      scheduledTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
     },
     {
       id: '3',
@@ -25,6 +27,7 @@ export class OrderService {
       customer: 'Carol',
       status: 'pending',
       imageUrl: 'assets/placeholder-rect.jpg',
+      scheduledTime: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
     },
   ];
 

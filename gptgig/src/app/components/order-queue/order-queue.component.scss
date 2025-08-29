@@ -1,0 +1,13 @@
+.orders-queue {
+  padding: 0.5rem;
+}
+
+.queue-item {
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+  --background: var(--ion-color-light);
+}
+
+.time-badge {
+  font-size: 0.75rem;
+}

@@ -4,4 +4,5 @@ export interface Order {
   customer: string;
   status: string;
   imageUrl?: string;
+  scheduledTime: string;
 }

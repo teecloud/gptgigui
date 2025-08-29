@@ -3,10 +3,12 @@
   <ion-menu contentId="main">
     <ion-header>
       <ion-toolbar color="tertiary">
-        <ion-title>Menu</ion-title>
+        <ion-title>Orders Queue</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content class="ion-padding"> Menu Content </ion-content>
+    <ion-content class="ion-padding">
+      <app-order-queue [orders]="orders$ | async"></app-order-queue>
+    </ion-content>
   </ion-menu>
 
   <div class="ion-page" id="main">

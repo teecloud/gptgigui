@@ -1,0 +1,19 @@
+<div class="orders-queue">
+  @if (orders?.length) {
+    <ion-list inset>
+      @for (order of orders; track order.id) {
+        <ion-item class="queue-item" [color]="getItemColor(order)" lines="none">
+          <ion-label>
+            <h3>{{ order.title }}</h3>
+            <p>{{ order.customer }}</p>
+          </ion-label>
+          <ion-badge slot="end" [color]="getItemColor(order)" class="time-badge">
+            {{ order.scheduledTime | date:'shortTime' }}
+          </ion-badge>
+        </ion-item>
+      }
+    </ion-list>
+  } @else {
+    <ion-text color="medium">No orders scheduled</ion-text>
+  }
+</div>

@@ -7,6 +7,7 @@ import { OrderService } from '../../../services/order.service';
 import { map } from 'rxjs/operators';
 import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
 import { OrderCardComponent } from '../../../components/order-card/order-card.component';
+import { OrderQueueComponent } from '../../../components/order-queue/order-queue.component';
 
 @Component({
   standalone: true,
@@ -18,6 +19,7 @@ import { OrderCardComponent } from '../../../components/order-card/order-card.co
     OffersCarouselComponent,
     PageToolbarComponent,
     OrderCardComponent,
+    OrderQueueComponent,
   ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],

@@ -17,12 +17,14 @@ export const localConfigInterceptor: HttpInterceptorFn = (req, next) => {
       return of(new HttpResponse({ status: 200, body: cfg.profiles }));
     }
     if (req.method === 'POST') {
-      const newProfile = { id: cfg.profiles.length + 1, ...req.body };
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      const newProfile = { id: cfg.profiles.length + 1, ...body };
       cfg.profiles.push(newProfile);
       return of(new HttpResponse({ status: 200, body: newProfile }));
     }
     if (req.method === 'PUT') {
-      cfg.profiles[0] = { ...cfg.profiles[0], ...req.body };
+      const body = (req.body ?? {}) as Record<string, unknown>;
+      cfg.profiles[0] = { ...cfg.profiles[0], ...body };
       return of(new HttpResponse({ status: 200, body: cfg.profiles[0] }));
     }
     if (req.method === 'DELETE') {
@@ -36,11 +38,12 @@ export const localConfigInterceptor: HttpInterceptorFn = (req, next) => {
       return of(new HttpResponse({ status: 200, body: cfg.messages }));
     }
     if (req.method === 'POST') {
+      const body = (req.body ?? {}) as Record<string, unknown>;
       const newMsg = {
         id: cfg.messages.length + 1,
         timestamp: new Date().toISOString(),
         isRead: false,
-        ...req.body
+        ...body
       };
       cfg.messages.push(newMsg);
       return of(new HttpResponse({ status: 200, body: newMsg }));

@@ -6,6 +6,7 @@ import { environment } from '../../environments/environment';
 export interface Profile {
   id: number;
   displayName: string;
+  avatarUrl?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -17,11 +18,11 @@ export class ProfileService {
     return this.http.get<Profile>(this.baseUrl);
   }
 
-  createProfile(data: { displayName: string }): Observable<Profile> {
+  createProfile(data: { displayName: string; avatarUrl?: string }): Observable<Profile> {
     return this.http.post<Profile>(this.baseUrl, data);
   }
 
-  updateProfile(data: { displayName: string }): Observable<Profile> {
+  updateProfile(data: { displayName?: string; avatarUrl?: string }): Observable<Profile> {
     return this.http.put<Profile>(this.baseUrl, data);
   }
 

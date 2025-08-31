@@ -13,11 +13,11 @@ export interface LocalConfig {
 
 export const localConfig: LocalConfig = {
   profiles: [
-    { id: 1, displayName: 'Alice' },
-    { id: 2, displayName: 'Bob' },
-    { id: 3, displayName: 'Charlie' },
-    { id: 4, displayName: 'Diana' },
-    { id: 5, displayName: 'Evan' }
+    { id: 1, displayName: 'Alice', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
+    { id: 2, displayName: 'Bob', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
+    { id: 3, displayName: 'Charlie', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
+    { id: 4, displayName: 'Diana', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' },
+    { id: 5, displayName: 'Evan', avatarUrl: 'https://ionicframework.com/docs/img/demos/avatar.svg' }
   ],
   messages: [
     { id: 1, senderId: '1', recipientId: '2', content: 'Hi Bob', timestamp: '2023-01-01T00:00:00Z', isRead: false },

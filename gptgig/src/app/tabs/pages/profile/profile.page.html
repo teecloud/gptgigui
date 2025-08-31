@@ -8,8 +8,23 @@
   </ion-header>
 
   <div class="ion-padding">
+    <ion-avatar class="ion-margin-bottom">
+      <img [src]="avatarUrl || 'https://ionicframework.com/docs/img/demos/avatar.svg'" />
+    </ion-avatar>
+
+    <ion-button expand="full" (click)="fileInput.click()">Upload Photo</ion-button>
+    <ion-button expand="full" (click)="capturePhoto()">Take Photo</ion-button>
+    <input type="file" accept="image/*" (change)="onFileSelected($event)" #fileInput hidden />
+
     @if (profile) {
-      <h2>Welcome, {{ profile.displayName }}</h2>
+      <ion-list>
+        <ion-item>
+          <ion-label>ID: {{ profile.id }}</ion-label>
+        </ion-item>
+        <ion-item>
+          <ion-label>Display Name: {{ profile.displayName }}</ion-label>
+        </ion-item>
+      </ion-list>
     }
 
     <form (ngSubmit)="saveProfile()">

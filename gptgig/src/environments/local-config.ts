@@ -1,5 +1,17 @@
 /** Mock data used when running with the local-config option */
-export const localConfig = {
+
+export interface LocalConfig {
+  profiles: any[];
+  messages: any[];
+  vendors: any[];
+  categories: any[];
+  services: any[];
+  providers: any[];
+  searchResults: any[];
+  paymentIntent: any;
+}
+
+export const localConfig: LocalConfig = {
   profiles: [
     { id: 1, displayName: 'Alice' },
     { id: 2, displayName: 'Bob' },

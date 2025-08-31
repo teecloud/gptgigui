@@ -1,13 +1,14 @@
 import { HttpInterceptorFn, HttpResponse } from '@angular/common/http';
 import { of } from 'rxjs';
 import { environment } from '../../environments/environment';
+import type { LocalConfig } from '../../environments/local-config';
 
 export const localConfigInterceptor: HttpInterceptorFn = (req, next) => {
   if (!environment.useLocalConfig || !environment.localConfig) {
     return next(req);
   }
 
-  const cfg = environment.localConfig;
+  const cfg: LocalConfig = environment.localConfig!;
   const url = req.url;
 
   // Profiles

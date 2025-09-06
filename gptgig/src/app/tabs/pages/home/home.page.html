@@ -18,7 +18,7 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">  <div class="gutter">
-   @let orders = (orders$ | async);
+   <!-- @let orders = (orders$ | async);
 @if (orders?.length) {
   <div class="orders-grid">
     @for (order of orders; track order.id) {
@@ -26,7 +26,7 @@
     }
   </div>
 }
-
+ -->
    @let topPicks = (topPicks$ | async);
 @if (topPicks) {
   <app-offers-carousel title="Top picks for you" [cardType]="'rect'" [items]="topPicks"></app-offers-carousel>

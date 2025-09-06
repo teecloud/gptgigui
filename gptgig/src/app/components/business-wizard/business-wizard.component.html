@@ -1,0 +1,80 @@
+<div class="wizard">
+  @switch (step()) {
+    @case (1) {
+      <h2>Decide on a Business Structure</h2>
+      <ion-item>
+        <ion-label>Structure</ion-label>
+        <ion-select [(ngModel)]="data.structure">
+          <ion-select-option value="Sole Proprietorship">Sole Proprietorship</ion-select-option>
+          <ion-select-option value="LLC">LLC</ion-select-option>
+          <ion-select-option value="Corporation">Corporation</ion-select-option>
+          <ion-select-option value="Partnership">Partnership</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-button expand="block" (click)="next()">Next</ion-button>
+    }
+    @case (2) {
+      <h2>Choose and Register a Business Name</h2>
+      <ion-item>
+        <ion-label position="stacked">Business Name</ion-label>
+        <ion-input [(ngModel)]="data.name"></ion-input>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="next()">Next</ion-button>
+    }
+    @case (3) {
+      <h2>Get an EIN</h2>
+      <ion-item>
+        <ion-label position="stacked">EIN</ion-label>
+        <ion-input [(ngModel)]="data.ein"></ion-input>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="next()">Next</ion-button>
+    }
+    @case (4) {
+      <h2>Apply for Necessary Licenses and Permits</h2>
+      <ion-item>
+        <ion-label position="stacked">Licenses/Permits</ion-label>
+        <ion-textarea [(ngModel)]="data.licenses"></ion-textarea>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="next()">Next</ion-button>
+    }
+    @case (5) {
+      <h2>Set Up Business Finances</h2>
+      <ion-item>
+        <ion-label position="stacked">Bank Details</ion-label>
+        <ion-textarea [(ngModel)]="data.bankInfo"></ion-textarea>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="next()">Next</ion-button>
+    }
+    @case (6) {
+      <h2>Register for Taxes</h2>
+      <ion-item>
+        <ion-label position="stacked">Tax Details</ion-label>
+        <ion-textarea [(ngModel)]="data.taxes"></ion-textarea>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="next()">Next</ion-button>
+    }
+    @case (7) {
+      <h2>Protect Your Business</h2>
+      <ion-item>
+        <ion-label position="stacked">Insurance</ion-label>
+        <ion-textarea [(ngModel)]="data.insurance"></ion-textarea>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="next()">Next</ion-button>
+    }
+    @case (8) {
+      <h2>Formalize Operations</h2>
+      <ion-item>
+        <ion-label position="stacked">Operations</ion-label>
+        <ion-textarea [(ngModel)]="data.operations"></ion-textarea>
+      </ion-item>
+      <ion-button (click)="prev()">Back</ion-button>
+      <ion-button (click)="complete()">Finish</ion-button>
+    }
+  }
+</div>

@@ -22,6 +22,7 @@ namespace gptgigapi.Data
         public DbSet<VendorProfile> VendorProfiles => Set<VendorProfile>();
         public DbSet<CustomerProfile> CustomerProfiles => Set<CustomerProfile>();
         public DbSet<Message> Messages => Set<Message>();
+        public DbSet<BusinessRegistration> BusinessRegistrations => Set<BusinessRegistration>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -31,6 +32,7 @@ namespace gptgigapi.Data
             builder.Entity<VendorProfile>().HasQueryFilter(e => e.TenantId == _tenantId);
             builder.Entity<CustomerProfile>().HasQueryFilter(e => e.TenantId == _tenantId);
             builder.Entity<Message>().HasQueryFilter(e => e.TenantId == _tenantId);
+            builder.Entity<BusinessRegistration>().HasQueryFilter(e => e.TenantId == _tenantId);
         }
 
         public override int SaveChanges()

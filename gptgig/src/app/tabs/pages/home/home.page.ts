@@ -1,4 +1,4 @@
-import { Component, CUSTOM_ELEMENTS_SCHEMA, inject } from '@angular/core';
+import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, signal } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import { OffersCarouselComponent } from '../../../components/offers-carousel/offers-carousel.component';
@@ -8,6 +8,7 @@ import { map } from 'rxjs/operators';
 import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
 
 import { OrderQueueComponent } from '../../../components/order-queue/order-queue.component';
+import { BusinessWizardComponent } from '../../../components/business-wizard/business-wizard.component';
 
 @Component({
   standalone: true,
@@ -19,6 +20,7 @@ import { OrderQueueComponent } from '../../../components/order-queue/order-queue
     OffersCarouselComponent,
     PageToolbarComponent,
     OrderQueueComponent,
+    BusinessWizardComponent,
   ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
@@ -35,4 +37,5 @@ export class HomePage {
   trending$ = this.services$.pipe(map(list => [...list].reverse()));
   topProviders$ = this.providers$.pipe(map(list => list.slice(0, 10)));
   orders$ = this.orders.getVendorQueue();
+  showWizard = signal(false);
 }

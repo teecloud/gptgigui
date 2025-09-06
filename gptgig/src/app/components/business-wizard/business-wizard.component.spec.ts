@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { HomePage } from './home.page';
+import { BusinessWizardComponent } from './business-wizard.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-describe('HomePage', () => {
-  let component: HomePage;
-  let fixture: ComponentFixture<HomePage>;
+describe('BusinessWizardComponent', () => {
+  let component: BusinessWizardComponent;
+  let fixture: ComponentFixture<BusinessWizardComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule]
+      imports: [BusinessWizardComponent, HttpClientTestingModule]
     });
-    fixture = TestBed.createComponent(HomePage);
+    fixture = TestBed.createComponent(BusinessWizardComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

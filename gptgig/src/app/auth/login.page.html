@@ -1,9 +1,24 @@
-<ion-content class="ion-padding login-background">
-  <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
-  <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
-  <ion-button expand="block" (click)="login()">Login</ion-button>
-  <ion-button expand="block" fill="outline" (click)="goToRegister()">Sign Up</ion-button>
-  @if (errorMessage) {
-    <ion-text color="danger">{{ errorMessage }}</ion-text>
-  }
+<ion-content class="login-background">
+  <div class="login-wrapper ion-padding">
+    <div class="login-card">
+      <h1 class="logo-title">Lumorate</h1>
+
+      <ion-list lines="none">
+        <ion-item>
+          <ion-input placeholder="Email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-input placeholder="Password" type="password" [(ngModel)]="password"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button expand="block" (click)="login()">Login</ion-button>
+      <ion-button expand="block" fill="outline" (click)="goToRegister()">Sign Up</ion-button>
+
+      @if (errorMessage) {
+        <ion-text color="danger">{{ errorMessage }}</ion-text>
+      }
+    </div>
+  </div>
 </ion-content>

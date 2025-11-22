@@ -78,6 +78,14 @@ namespace gptgigapi.Controllers
             return Ok(new { token });
         }
 
+        [HttpPost("logout")]
+        [Authorize]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return Ok();
+        }
+
         private string GenerateToken(IEnumerable<Claim> claims)
         {
             var jwt = _configuration.GetSection("Jwt");

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { Profile, ProfileService } from '../../services/profile.service';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-profile-modal',
@@ -17,7 +18,8 @@ export class ProfileModalComponent implements OnInit {
   constructor(
     private modalCtrl: ModalController,
     private router: Router,
-    private profileService: ProfileService
+    private profileService: ProfileService,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -38,5 +40,17 @@ export class ProfileModalComponent implements OnInit {
   async goToAdmin() {
     await this.modalCtrl.dismiss();
     this.router.navigateByUrl('/tabs/admin');
+  }
+
+  private async navigateToLogin() {
+    await this.modalCtrl.dismiss();
+    this.router.navigateByUrl('/login');
+  }
+
+  logout() {
+    this.authService.logout().subscribe({
+      next: () => this.navigateToLogin(),
+      error: () => this.navigateToLogin()
+    });
   }
 }

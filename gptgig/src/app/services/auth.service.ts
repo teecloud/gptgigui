@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, finalize } from 'rxjs';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -36,7 +36,11 @@ export class AuthService {
     return authed;
   }
 
-  logout(): void {
-    localStorage.removeItem(this.tokenKey);
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/logout`, {}).pipe(
+      finalize(() => {
+        localStorage.removeItem(this.tokenKey);
+      })
+    );
   }
 }

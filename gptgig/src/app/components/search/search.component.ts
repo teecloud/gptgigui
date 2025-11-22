@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { SearchOptions } from '../../models/search-options';
 import { SearchService } from '../../services/search.service';
 import { ServiceItem } from '../../models/catalog.models';
+import { addIcons } from 'ionicons';
+import { optionsOutline } from 'ionicons/icons';
+
 
 @Component({
   selector: 'app-search',
@@ -21,7 +24,9 @@ export class SearchComponent {
 
   @Output() search = new EventEmitter<SearchOptions>();
 
-  constructor(private searchSvc: SearchService) {}
+  constructor(private searchSvc: SearchService) {
+    addIcons({ optionsOutline });
+  }
 
   onSearchChange(event: any) {
     this.query = event?.target?.value ?? '';

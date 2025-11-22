@@ -19,11 +19,20 @@ export class LoginPage {
 
   constructor(private auth: AuthService, private router: Router) {}
 
+  private blurActiveElement(): void {
+    const activeElement = document.activeElement as HTMLElement | null;
+
+    if (activeElement && typeof activeElement.blur === 'function') {
+      activeElement.blur();
+    }
+  }
+
   login() {
     this.auth.login({ email: this.email, password: this.password }).subscribe({
       next: (res) => {
         this.errorMessage = '';
         this.auth.saveToken(res.token);
+        this.blurActiveElement();
         this.router.navigateByUrl('/');
       },
       error: (err) => {
@@ -37,6 +46,7 @@ export class LoginPage {
   }
 
   goToRegister() {
+    this.blurActiveElement();
     this.router.navigateByUrl('/register');
   }
 }

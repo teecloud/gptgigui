@@ -1,3 +1,54 @@
 .login-background {
-  --background: url('../../assets/icon/favicon.png') no-repeat center center / cover;
+  --background: linear-gradient(135deg, #0b1224, #0f0f1f);
+  color: #e7ecf7;
+
+  .login-wrapper {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .login-card {
+    width: min(420px, 100%);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 32px 24px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+    backdrop-filter: blur(4px);
+  }
+
+  .logo-title {
+    text-align: center;
+    font-size: 2rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 28px;
+  }
+
+  ion-item {
+    --background: transparent;
+    --border-radius: 12px;
+    --inner-padding-end: 12px;
+    --highlight-height: 0;
+    margin-bottom: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+  }
+
+  ion-input {
+    --color: #e7ecf7;
+    --placeholder-color: rgba(231, 236, 247, 0.7);
+  }
+
+  ion-button {
+    --border-radius: 12px;
+    margin-top: 12px;
+  }
+
+  ion-text {
+    display: block;
+    text-align: center;
+    margin-top: 12px;
+  }
 }

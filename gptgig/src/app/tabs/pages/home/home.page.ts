@@ -8,7 +8,7 @@ import { map } from 'rxjs/operators';
 import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
 
 import { OrderQueueComponent } from '../../../components/order-queue/order-queue.component';
-import { BusinessWizardComponent } from '../../../components/business-wizard/business-wizard.component';
+
 
 @Component({
   standalone: true,
@@ -19,8 +19,7 @@ import { BusinessWizardComponent } from '../../../components/business-wizard/bus
     AsyncPipe,
     OffersCarouselComponent,
     PageToolbarComponent,
-    OrderQueueComponent,
-    BusinessWizardComponent,
+    OrderQueueComponent
   ],
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],

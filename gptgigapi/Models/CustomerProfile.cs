@@ -10,9 +10,6 @@ namespace gptgigapi.Models
         public string UserId { get; set; } = string.Empty;
         public IdentityUser? User { get; set; }
 
-        public int VendorProfileId { get; set; }
-        public VendorProfile? VendorProfile { get; set; }
-
         public string TenantId { get; set; } = string.Empty;
     }
 }

@@ -1,4 +1,7 @@
 <ion-card class="rect" (click)="select()">
+  <ion-button fill="clear" class="wishlist" (click)="toggleWishlist($event)">
+    <ion-icon [name]="item.wishlist ? 'heart' : 'heart-outline'"></ion-icon>
+  </ion-button>
   <div class="image" [style.backgroundImage]="'url(' + (item.imageUrl || 'assets/placeholder-rect.jpg') + ')'"></div>
   <ion-card-header>
     <ion-card-title>{{ item.title }}</ion-card-title>

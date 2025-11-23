@@ -18,6 +18,7 @@ export interface ServiceItem {
   description?: string;
   availableSlots?: string[];
   selectedSlot?: string;
+  wishlist?: boolean;
 }
 
 export interface Provider {

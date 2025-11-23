@@ -11,8 +11,6 @@ namespace gptgigapi.Models
         public string UserId { get; set; } = string.Empty;
         public IdentityUser? User { get; set; }
 
-        public ICollection<CustomerProfile>? Customers { get; set; }
-
         public string TenantId { get; set; } = string.Empty;
     }
 }

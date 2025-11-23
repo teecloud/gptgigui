@@ -3,7 +3,7 @@ import { IonicModule, ModalController } from '@ionic/angular';
 import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { MenuCardRectComponent } from '../menu-card-rect/menu-card-rect.component';
 import { MenuCardCircComponent } from '../menu-card-circ/menu-card-circ.component';
-import { ServiceItem, Provider } from '../../models/catalog.models';
+import { ServiceItem, ServiceProvider } from '../../models/catalog.models';
 import { OffersFeedModalComponent } from '../offers-feed-modal/offers-feed-modal.component';
 
 type CardType = 'rect' | 'circ';
@@ -19,7 +19,7 @@ type CardType = 'rect' | 'circ';
 export class OffersCarouselComponent {
   @Input() title = '';
   @Input() cardType: CardType = 'rect';
-  @Input() items: (ServiceItem | Provider)[] = [];
+  @Input() items: (ServiceItem | ServiceProvider)[] = [];
 
   // Swiper config via attributes (web component)
   slidesPerView = this.cardType === 'rect' ? 1.3 : 3.2;

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { ServiceCategory, ServiceItem, Provider, CatalogTemplate } from '../models/catalog.models';
+import { ServiceCategory, ServiceItem, ServiceProvider, CatalogTemplate } from '../models/catalog.models';
 import { environment } from '../../environments/environment';
 
 @Injectable({ providedIn: 'root' })
@@ -10,7 +10,7 @@ export class CatalogService {
 
   categories$ = new BehaviorSubject<ServiceCategory[]>([]);
   services$   = new BehaviorSubject<ServiceItem[]>([]);
-  providers$  = new BehaviorSubject<Provider[]>([]);
+  providers$  = new BehaviorSubject<ServiceProvider[]>([]);
 
   constructor(private http: HttpClient) {
     const saved = localStorage.getItem('catalogTemplateData');
@@ -37,7 +37,7 @@ export class CatalogService {
         this.saveLocal();
       });
 
-    this.http.get<Provider[]>(`${this.baseUrl}/providers`)
+    this.http.get<ServiceProvider[]>(`${this.baseUrl}/providers`)
       .subscribe(data => {
         this.providers$.next(data);
         this.saveLocal();
@@ -57,8 +57,8 @@ export class CatalogService {
   }
 
   /** Upsert provider via backend */
-  upsertProvider(p: Provider) {
-    return this.http.post<Provider>(`${this.baseUrl}/providers`, p)
+  upsertProvider(p: ServiceProvider) {
+    return this.http.post<ServiceProvider>(`${this.baseUrl}/providers`, p)
       .pipe(tap(() => this.refresh()));
   }
 

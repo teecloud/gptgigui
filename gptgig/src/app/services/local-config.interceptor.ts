@@ -18,7 +18,11 @@ export const localConfigInterceptor: HttpInterceptorFn = (req, next) => {
     }
     if (req.method === 'POST') {
       const body = (req.body ?? {}) as Record<string, unknown>;
-      const newProfile = { id: cfg.profiles.length + 1, ...body };
+      const newProfile = {
+        id: cfg.profiles.length + 1,
+        displayName: (body['displayName'] as string) ?? `User ${cfg.profiles.length + 1}`,
+        avatarUrl: (body['avatarUrl'] as string) ?? undefined
+      };
       cfg.profiles.push(newProfile);
       return of(new HttpResponse({ status: 200, body: newProfile }));
     }
@@ -38,11 +42,14 @@ export const localConfigInterceptor: HttpInterceptorFn = (req, next) => {
       return of(new HttpResponse({ status: 200, body: cfg.messages }));
     }
     if (req.method === 'POST') {
-      const body = (req.body ?? {}) as Record<string, unknown>;
-      const newMsg = {
+      const body = (req.body ?? {}) as Partial<typeof cfg.messages[number]>;
+      const newMsg: typeof cfg.messages[number] = {
         id: cfg.messages.length + 1,
         timestamp: new Date().toISOString(),
         isRead: false,
+        senderId: (body as any).senderId ?? 0,
+        recipientId: (body as any).recipientId ?? 0,
+        content: (body as any).content ?? '',
         ...body
       };
       cfg.messages.push(newMsg);

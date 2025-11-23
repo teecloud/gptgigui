@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { IonicModule } from '@ionic/angular';
 import { CommonModule } from '@angular/common';
-import { Provider } from '../../models/catalog.models';
+import { ServiceProvider } from '../../models/catalog.models';
 
 @Component({
   standalone: true,
@@ -11,5 +11,5 @@ import { Provider } from '../../models/catalog.models';
   styleUrls: ['./menu-card-circ.component.scss']
 })
 export class MenuCardCircComponent {
-  @Input() provider!: Provider;
+  @Input() provider!: ServiceProvider;
 }

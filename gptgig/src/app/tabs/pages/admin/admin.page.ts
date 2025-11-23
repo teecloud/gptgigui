@@ -6,7 +6,7 @@ import { CatalogService } from '../../../services/catalog.service';
 import { PhotoService } from '../../../services/photo.service';
 import { MenuCardRectComponent } from '../../../components/menu-card-rect/menu-card-rect.component';
 import { MenuCardCircComponent } from '../../../components/menu-card-circ/menu-card-circ.component';
-import { ServiceItem, Provider } from '../../../models/catalog.models';
+import { ServiceItem, ServiceProvider } from '../../../models/catalog.models';
 import { DEFAULT_TEMPLATES } from '../../../models/default-templates';
 
 @Component({
@@ -145,7 +145,7 @@ export class AdminPage {
     this.setSection('services');
   }
 
-  editProvider(p: Provider) {
+  editProvider(p: ServiceProvider) {
     this.providerForm.patchValue(p as any);
     this.editingProv = true;
     this.setSection('providers');

@@ -3,7 +3,7 @@ import { CommonModule, NgTemplateOutlet } from '@angular/common';
 import { IonicModule, ModalController } from '@ionic/angular';
 import { MenuCardRectComponent } from '../menu-card-rect/menu-card-rect.component';
 import { MenuCardCircComponent } from '../menu-card-circ/menu-card-circ.component';
-import { ServiceItem, Provider } from '../../models/catalog.models';
+import { ServiceItem, ServiceProvider } from '../../models/catalog.models';
 
 type CardType = 'rect' | 'circ';
 
@@ -17,9 +17,9 @@ type CardType = 'rect' | 'circ';
 export class OffersFeedModalComponent {
   @Input() title = '';
   @Input() cardType: CardType = 'rect';
-  @Input() items: (ServiceItem | Provider)[] = [];
+  @Input() items: (ServiceItem | ServiceProvider)[] = [];
 
-  feedItems: (ServiceItem | Provider)[] = [];
+  feedItems: (ServiceItem | ServiceProvider)[] = [];
 
   constructor(private modalCtrl: ModalController) {}
 

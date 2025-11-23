@@ -20,7 +20,7 @@ export interface ServiceItem {
   selectedSlot?: string;
 }
 
-export interface Provider {
+export interface ServiceProvider {
   id: string;
   name: string;
   avatarUrl?: string;
@@ -32,5 +32,5 @@ export interface Provider {
 export interface CatalogTemplate {
   categories: ServiceCategory[];
   services: ServiceItem[];
-  providers: Provider[];
+  providers: ServiceProvider[];
 }

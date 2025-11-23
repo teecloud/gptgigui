@@ -6,16 +6,16 @@ namespace gptgigapi.Data
     {
         public static List<ServiceCategory> Categories { get; } = new()
         {
-            new ServiceCategory { Id = "clean", Name = "Cleaning", Icon = "sparkles" },
-            new ServiceCategory { Id = "move", Name = "Moving", Icon = "cube" },
-            new ServiceCategory { Id = "tech", Name = "Tech Help", Icon = "hardware-chip" },
+            new ServiceCategory { Id = "clean", Name = "Cleaning", Icon = "sparkles", ProviderId = "pro1" },
+            new ServiceCategory { Id = "move", Name = "Moving", Icon = "cube", ProviderId = "pro3" },
+            new ServiceCategory { Id = "tech", Name = "Tech Help", Icon = "hardware-chip", ProviderId = "pro2" },
         };
 
         public static List<ServiceItem> Services { get; } = new()
         {
-            new ServiceItem { Id = "svc1", Title = "Apartment Deep Clean", CategoryId = "clean", Price = 149, DurationMin = 180, ImageUrl = "assets/samples/clean1.jpg", Rating = 4.9, Description = "Professional deep cleaning for your entire apartment.", AvailableSlots = new List<string>{ "09:00", "13:00" } },
-            new ServiceItem { Id = "svc2", Title = "Two Movers & Truck", CategoryId = "move", Price = 95, DurationMin = 120, ImageUrl = "assets/samples/move1.jpg", Rating = 4.7, Description = "Reliable moving service with two helpers and a truck.", AvailableSlots = new List<string>{ "10:00", "14:00" } },
-            new ServiceItem { Id = "svc3", Title = "Home Wi-Fi Tune Up", CategoryId = "tech", Price = 79, DurationMin = 60, ImageUrl = "assets/samples/tech1.jpg", Rating = 4.8, Description = "Optimize and secure your home wireless network.", AvailableSlots = new List<string>{ "11:00", "15:00" } },
+            new ServiceItem { Id = "svc1", Title = "Apartment Deep Clean", CategoryId = "clean", ProviderId = "pro1", Price = 149, DurationMin = 180, ImageUrl = "assets/samples/clean1.jpg", Rating = 4.9, Description = "Professional deep cleaning for your entire apartment.", AvailableSlots = new List<string>{ "09:00", "13:00" } },
+            new ServiceItem { Id = "svc2", Title = "Two Movers & Truck", CategoryId = "move", ProviderId = "pro3", Price = 95, DurationMin = 120, ImageUrl = "assets/samples/move1.jpg", Rating = 4.7, Description = "Reliable moving service with two helpers and a truck.", AvailableSlots = new List<string>{ "10:00", "14:00" } },
+            new ServiceItem { Id = "svc3", Title = "Home Wi-Fi Tune Up", CategoryId = "tech", ProviderId = "pro2", Price = 79, DurationMin = 60, ImageUrl = "assets/samples/tech1.jpg", Rating = 4.8, Description = "Optimize and secure your home wireless network.", AvailableSlots = new List<string>{ "11:00", "15:00" } },
         };
 
         public static List<Provider> Providers { get; } = new()

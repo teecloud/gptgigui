@@ -5,6 +5,7 @@ namespace gptgigapi.Models
         public string Id { get; set; } = string.Empty;
         public string Name { get; set; } = string.Empty;
         public string? Icon { get; set; }
+        public string ProviderId { get; set; } = string.Empty;
     }
 
     public class ServiceItem
@@ -15,6 +16,7 @@ namespace gptgigapi.Models
         public decimal? Price { get; set; }
         public int? DurationMin { get; set; }
         public string? CategoryId { get; set; }
+        public string ProviderId { get; set; } = string.Empty;
         public List<string>? Tags { get; set; }
         public double? Rating { get; set; }
         public string? Description { get; set; }

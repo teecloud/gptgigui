@@ -2,6 +2,7 @@ export interface ServiceCategory {
   id: string;
   name: string;
   icon?: string;
+  providerId: string;
 }
 
 export interface ServiceItem {
@@ -11,6 +12,7 @@ export interface ServiceItem {
   price?: number;
   durationMin?: number;
   categoryId?: string;
+  providerId: string;
   tags?: string[];
   rating?: number;
   description?: string;

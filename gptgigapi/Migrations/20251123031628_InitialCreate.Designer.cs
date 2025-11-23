@@ -12,8 +12,8 @@ using gptgigapi.Data;
 namespace gptgigapi.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251123030311_RemoveVendorFromCustomerProfile")]
-    partial class RemoveVendorFromCustomerProfile
+    [Migration("20251123031628_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

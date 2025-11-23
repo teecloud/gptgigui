@@ -1,0 +1,12 @@
+{
+  "apps": [
+    {
+      "appId": "a0000a0a",
+      "root": "gptgig",
+      "dependencyInstallCommand": "npm install",
+      "webBuildCommand": "npm run build",
+      "iosPath": "ios",
+      "androidPath": "android"
+    }
+  ]
+}

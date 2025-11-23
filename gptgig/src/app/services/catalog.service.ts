@@ -17,7 +17,7 @@ export class CatalogService {
     if (saved) {
       const data = JSON.parse(saved) as CatalogTemplate;
       this.categories$.next(data.categories);
-      this.services$.next(data.services);
+      this.services$.next(this.applyWishlistFlag(data.services));
       this.providers$.next(data.providers);
     }
     this.refresh();
@@ -33,7 +33,7 @@ export class CatalogService {
 
     this.http.get<ServiceItem[]>(`${this.baseUrl}/services`)
       .subscribe(data => {
-        this.services$.next(data);
+        this.services$.next(this.applyWishlistFlag(data));
         this.saveLocal();
       });
 
@@ -64,9 +64,25 @@ export class CatalogService {
 
   loadTemplate(t: CatalogTemplate) {
     this.categories$.next(t.categories);
-    this.services$.next(t.services);
+    this.services$.next(this.applyWishlistFlag(t.services));
     this.providers$.next(t.providers);
     this.saveLocal();
+  }
+
+  toggleWishlist(serviceId: string) {
+    const services = this.services$.value.map(svc =>
+      svc.id === serviceId ? { ...svc, wishlist: !svc.wishlist } : svc
+    );
+    this.services$.next(services);
+    this.saveLocal();
+  }
+
+  private applyWishlistFlag(items: ServiceItem[]) {
+    const wishlistMap = new Map(this.services$.value.map(s => [s.id, !!s.wishlist]));
+    return items.map(it => ({
+      ...it,
+      wishlist: wishlistMap.get(it.id) ?? it.wishlist ?? false
+    }));
   }
 
   private saveLocal() {

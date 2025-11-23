@@ -1,7 +1,7 @@
 {
   "apps": [
     {
-      "appId": "a0000a0a",
+      "appId": " 948475b6",
       "root": "gptgig",
       "dependencyInstallCommand": "npm install",
       "webBuildCommand": "npm run build",

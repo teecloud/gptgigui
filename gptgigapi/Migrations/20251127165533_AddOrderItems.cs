@@ -10,17 +10,39 @@ namespace gptgigapi.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropColumn(
-                name: "ServiceImageUrl",
-                table: "Orders");
+            migrationBuilder.Sql(@"
+                IF OBJECT_ID(N'[Orders]', 'U') IS NULL
+                BEGIN
+                    CREATE TABLE [Orders] (
+                        [Id] INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+                        [Amount] DECIMAL(18,2) NOT NULL,
+                        [Currency] NVARCHAR(10) NOT NULL,
+                        [PaymentIntentId] NVARCHAR(MAX) NOT NULL,
+                        [PaymentMethodType] NVARCHAR(MAX) NULL,
+                        [PaymentStatus] NVARCHAR(MAX) NOT NULL,
+                        [CustomerName] NVARCHAR(MAX) NULL,
+                        [CustomerEmail] NVARCHAR(MAX) NULL,
+                        [ScheduledSlot] NVARCHAR(MAX) NULL,
+                        [CreatedAt] DATETIME2 NOT NULL,
+                        [TenantId] NVARCHAR(MAX) NOT NULL
+                    );
+                END
+            ");
 
-            migrationBuilder.DropColumn(
-                name: "ServiceItemId",
-                table: "Orders");
+            migrationBuilder.Sql(@"
+                IF OBJECT_ID(N'[Orders]', 'U') IS NOT NULL AND COL_LENGTH('Orders', 'ServiceImageUrl') IS NOT NULL
+                    ALTER TABLE [Orders] DROP COLUMN [ServiceImageUrl];
+            ");
 
-            migrationBuilder.DropColumn(
-                name: "ServiceTitle",
-                table: "Orders");
+            migrationBuilder.Sql(@"
+                IF OBJECT_ID(N'[Orders]', 'U') IS NOT NULL AND COL_LENGTH('Orders', 'ServiceItemId') IS NOT NULL
+                    ALTER TABLE [Orders] DROP COLUMN [ServiceItemId];
+            ");
+
+            migrationBuilder.Sql(@"
+                IF OBJECT_ID(N'[Orders]', 'U') IS NOT NULL AND COL_LENGTH('Orders', 'ServiceTitle') IS NOT NULL
+                    ALTER TABLE [Orders] DROP COLUMN [ServiceTitle];
+            ");
 
             migrationBuilder.CreateTable(
                 name: "OrderItems",

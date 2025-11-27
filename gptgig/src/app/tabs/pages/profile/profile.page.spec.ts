@@ -3,6 +3,7 @@ import { ProfilePage } from './profile.page';
 import { ProfileService } from 'src/app/services/profile.service';
 import { PhotoService } from 'src/app/services/photo.service';
 import { of } from 'rxjs';
+import { Platform } from '@ionic/angular';
 
 class MockProfileService {
   getProfile() { return of(); }
@@ -13,6 +14,7 @@ class MockProfileService {
 
 class MockPhotoService {
   captureBase64() { return Promise.resolve('data:image/png;base64,abc'); }
+  pickFromGallery() { return Promise.resolve('data:image/png;base64,xyz'); }
 }
 
 describe('ProfilePage', () => {
@@ -24,7 +26,8 @@ describe('ProfilePage', () => {
       imports: [ProfilePage],
       providers: [
         { provide: ProfileService, useClass: MockProfileService },
-        { provide: PhotoService, useClass: MockPhotoService }
+        { provide: PhotoService, useClass: MockPhotoService },
+        { provide: Platform, useValue: { is: () => false } }
       ]
     });
     fixture = TestBed.createComponent(ProfilePage);

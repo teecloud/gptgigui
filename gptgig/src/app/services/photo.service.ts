@@ -14,15 +14,19 @@ public photos: UserPhoto[] = [];
 
   constructor(private platform: Platform, private http: HttpClient) {}
 
-  async captureBase64(): Promise<string | undefined> {
+  async captureBase64(source: CameraSource = CameraSource.Camera): Promise<string | undefined> {
     const photo = await Camera.getPhoto({
       resultType: CameraResultType.Base64,
-      source: CameraSource.Camera,
+      source,
       quality: 90,
     });
     return photo.base64String
       ? `data:image/${photo.format};base64,${photo.base64String}`
       : undefined;
+  }
+
+  async pickFromGallery(): Promise<string | undefined> {
+    return this.captureBase64(CameraSource.Photos);
   }
 
   public async loadSaved() {

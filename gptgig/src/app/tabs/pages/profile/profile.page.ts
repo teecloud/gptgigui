@@ -5,6 +5,7 @@ import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonInput, IonButt
 import { PageToolbarComponent } from 'src/app/components/page-toolbar/page-toolbar.component';
 import { Profile, ProfileService } from 'src/app/services/profile.service';
 import { PhotoService } from 'src/app/services/photo.service';
+import { Platform } from '@ionic/angular';
 
 @Component({
   selector: 'app-profile',
@@ -17,8 +18,11 @@ export class ProfilePage implements OnInit {
   profile: Profile | null = null;
   displayName = '';
   avatarUrl = '';
+  isMobile: boolean;
 
-  constructor(private profileService: ProfileService, private photoSvc: PhotoService) { }
+  constructor(private profileService: ProfileService, private photoSvc: PhotoService, platform: Platform) {
+    this.isMobile = platform.is('hybrid');
+  }
 
   ngOnInit() {
     this.loadProfile();
@@ -61,6 +65,18 @@ export class ProfilePage implements OnInit {
     if (base64) {
       this.avatarUrl = base64;
     }
+  }
+
+  async onUploadClick(fileInput: HTMLInputElement) {
+    if (this.isMobile) {
+      const base64 = await this.photoSvc.pickFromGallery();
+      if (base64) {
+        this.avatarUrl = base64;
+      }
+      return;
+    }
+
+    fileInput.click();
   }
 
   onFileSelected(event: Event) {

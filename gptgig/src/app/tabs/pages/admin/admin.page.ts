@@ -127,7 +127,7 @@ export class AdminPage {
   }
 
   async captureImage(control: 'imageUrl' | 'avatarUrl') {
-    const base64 = await this.photoSvc.captureBase64();
+    const base64 = await this.photoSvc.pickFromGallery();
     if (base64) {
       if (control === 'imageUrl') this.svcForm.patchValue({ imageUrl: base64 });
       if (control === 'avatarUrl') this.providerForm.patchValue({ avatarUrl: base64 });

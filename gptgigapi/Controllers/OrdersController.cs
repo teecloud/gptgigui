@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using gptgigapi.Data;
 using gptgigapi.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -22,6 +23,7 @@ namespace gptgigapi.Controllers
         public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
             var orders = await _context.Orders
+                .Include(o => o.Items)
                 .AsNoTracking()
                 .OrderByDescending(o => o.CreatedAt)
                 .ToListAsync();
@@ -32,7 +34,10 @@ namespace gptgigapi.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<Order>> GetOrder(int id)
         {
-            var order = await _context.Orders.AsNoTracking().FirstOrDefaultAsync(o => o.Id == id);
+            var order = await _context.Orders
+                .Include(o => o.Items)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(o => o.Id == id);
             if (order is null)
             {
                 return NotFound();
@@ -44,11 +49,13 @@ namespace gptgigapi.Controllers
         [HttpPost]
         public async Task<ActionResult<Order>> CreateOrder(CreateOrderRequest request)
         {
+            if (request.Items is null || !request.Items.Any())
+            {
+                return BadRequest("Order must include at least one item.");
+            }
+
             var order = new Order
             {
-                ServiceItemId = request.ServiceItemId,
-                ServiceTitle = request.ServiceTitle,
-                ServiceImageUrl = request.ServiceImageUrl,
                 Amount = request.Amount,
                 Currency = request.Currency,
                 PaymentIntentId = request.PaymentIntentId,
@@ -58,6 +65,13 @@ namespace gptgigapi.Controllers
                 CustomerEmail = request.CustomerEmail,
                 ScheduledSlot = request.ScheduledSlot,
                 CreatedAt = DateTime.UtcNow,
+                Items = request.Items.Select(item => new OrderItem
+                {
+                    ServiceItemId = item.ServiceItemId,
+                    ServiceTitle = item.ServiceTitle,
+                    ServiceImageUrl = item.ServiceImageUrl,
+                    Quantity = item.Quantity,
+                }).ToList(),
             };
 
             _context.Orders.Add(order);
@@ -68,9 +82,7 @@ namespace gptgigapi.Controllers
     }
 
     public record CreateOrderRequest(
-        string ServiceItemId,
-        string ServiceTitle,
-        string? ServiceImageUrl,
+        IEnumerable<CreateOrderItemRequest> Items,
         decimal Amount,
         string Currency,
         string PaymentIntentId,
@@ -79,5 +91,12 @@ namespace gptgigapi.Controllers
         string? CustomerName,
         string? CustomerEmail,
         string? ScheduledSlot
+    );
+
+    public record CreateOrderItemRequest(
+        string ServiceItemId,
+        string ServiceTitle,
+        string? ServiceImageUrl,
+        int Quantity
     );
 }

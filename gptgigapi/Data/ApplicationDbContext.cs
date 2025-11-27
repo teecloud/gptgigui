@@ -26,6 +26,7 @@ namespace gptgigapi.Data
         public DbSet<ServiceCategory> ServiceCategories => Set<ServiceCategory>();
         public DbSet<ServiceItem> ServiceItems => Set<ServiceItem>();
         public DbSet<Provider> Providers => Set<Provider>();
+        public DbSet<Order> Orders => Set<Order>();
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -36,9 +37,14 @@ namespace gptgigapi.Data
             builder.Entity<CustomerProfile>().HasQueryFilter(e => e.TenantId == _tenantId);
             builder.Entity<Message>().HasQueryFilter(e => e.TenantId == _tenantId);
             builder.Entity<BusinessRegistration>().HasQueryFilter(e => e.TenantId == _tenantId);
+            builder.Entity<Order>().HasQueryFilter(e => e.TenantId == _tenantId);
 
             builder.Entity<ServiceItem>()
                 .Property(s => s.Price)
+                .HasColumnType("decimal(18,2)");
+
+            builder.Entity<Order>()
+                .Property(o => o.Amount)
                 .HasColumnType("decimal(18,2)");
         }
 

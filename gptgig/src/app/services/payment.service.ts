@@ -4,6 +4,11 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
 
+export interface PaymentIntentResponse {
+  clientSecret: string;
+  paymentIntentId: string;
+}
+
 @Injectable({
   providedIn: 'root',
 })
@@ -30,12 +35,13 @@ export class PaymentService {
       },
       requestPayerName: true,
       requestPayerEmail: true,
+      requestPayerPhone: true,
     });
     const result = await paymentRequest.canMakePayment();
     return result ? paymentRequest : null;
   }
 
-  createPaymentIntent(amount: number, currency: string): Observable<{ clientSecret: string }> {
-    return this.http.post<{ clientSecret: string }>(`${environment.apiUrl}/payments/create-intent`, { amount, currency });
+  createPaymentIntent(amount: number, currency: string): Observable<PaymentIntentResponse> {
+    return this.http.post<PaymentIntentResponse>(`${environment.apiUrl}/payments/create-intent`, { amount, currency });
   }
 }

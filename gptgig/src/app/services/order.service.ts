@@ -1,37 +1,36 @@
-import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Injectable, inject } from '@angular/core';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 import { Order } from '../models/order';
+import { environment } from '../../environments/environment';
+
+export interface CreateOrderRequest {
+  serviceItemId: string;
+  serviceTitle: string;
+  serviceImageUrl?: string;
+  amount: number;
+  currency: string;
+  paymentIntentId: string;
+  paymentMethodType?: string;
+  paymentStatus?: string;
+  customerName?: string;
+  customerEmail?: string;
+  scheduledSlot?: string;
+}
 
 @Injectable({ providedIn: 'root' })
 export class OrderService {
-  private orders: Order[] = [
-    {
-      id: '1',
-      title: 'Coffee Beans 1kg',
-      customer: 'Alice',
-      status: 'pending',
-      imageUrl: 'assets/placeholder-rect.jpg',
-      scheduledTime: new Date(Date.now() + 30 * 60 * 1000).toISOString(),
-    },
-    {
-      id: '2',
-      title: 'Espresso Machine',
-      customer: 'Bob',
-      status: 'pending',
-      imageUrl: 'assets/placeholder-rect.jpg',
-      scheduledTime: new Date(Date.now() + 2 * 60 * 60 * 1000).toISOString(),
-    },
-    {
-      id: '3',
-      title: 'Grinder',
-      customer: 'Carol',
-      status: 'pending',
-      imageUrl: 'assets/placeholder-rect.jpg',
-      scheduledTime: new Date(Date.now() - 15 * 60 * 1000).toISOString(),
-    },
-  ];
+  private http = inject(HttpClient);
+  private baseUrl = `${environment.apiUrl}/orders`;
+
+  createOrder(payload: CreateOrderRequest): Observable<Order> {
+    return this.http.post<Order>(this.baseUrl, payload);
+  }
 
   getVendorQueue(): Observable<Order[]> {
-    return of(this.orders);
+    return this.http.get<Order[]>(this.baseUrl).pipe(
+      map(orders => orders.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()))
+    );
   }
 }

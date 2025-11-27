@@ -1,1 +1,4 @@
-<div id="payment-request-button"></div>
+<div class="payment-wrapper" [class.processing]="isProcessing">
+  <div id="payment-request-button"></div>
+  <p class="unavailable" *ngIf="!isReady">Apple Pay or Google Pay are not available on this device.</p>
+</div>

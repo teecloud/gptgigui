@@ -1,8 +1,15 @@
 export interface Order {
-  id: string;
-  title: string;
-  customer: string;
-  status: string;
-  imageUrl?: string;
-  scheduledTime: string;
+  id: number;
+  serviceItemId: string;
+  serviceTitle: string;
+  customerName?: string;
+  customerEmail?: string;
+  paymentStatus: string;
+  serviceImageUrl?: string;
+  scheduledSlot?: string;
+  createdAt: string;
+  amount: number;
+  currency: string;
+  paymentIntentId: string;
+  paymentMethodType?: string;
 }

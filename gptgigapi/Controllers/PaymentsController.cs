@@ -18,7 +18,7 @@ namespace gptgigapi.Controllers
         public async Task<IActionResult> CreateIntent([FromBody] CreatePaymentIntentDto dto)
         {
             var intent = await _paymentService.CreatePaymentIntent(dto.Amount, dto.Currency);
-            return Ok(new { clientSecret = intent.ClientSecret });
+            return Ok(new { clientSecret = intent.ClientSecret, paymentIntentId = intent.Id });
         }
     }
 

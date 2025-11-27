@@ -4,11 +4,16 @@
       @for (order of orders; track order.id) {
         <ion-item class="queue-item" [color]="getItemColor(order)" lines="none">
           <ion-label>
-            <h3>{{ order.title }}</h3>
-            <p>{{ order.customer }}</p>
+            <h3>{{ order.serviceTitle }}</h3>
+            <p>{{ order.customerName || 'Guest' }}</p>
+            @if (order.paymentStatus) {
+              <ion-chip color="success" size="small">
+                <ion-label>{{ order.paymentStatus | titlecase }}</ion-label>
+              </ion-chip>
+            }
           </ion-label>
           <ion-badge slot="end" [color]="getItemColor(order)" class="time-badge">
-            {{ order.scheduledTime | date:'shortTime' }}
+            {{ (order.scheduledSlot || order.createdAt) | date:'shortTime' }}
           </ion-badge>
         </ion-item>
       }

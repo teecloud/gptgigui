@@ -1,3 +1,18 @@
+.payment-wrapper {
+  width: 100%;
+
+  &.processing {
+    opacity: 0.6;
+    pointer-events: none;
+  }
+}
+
 #payment-request-button {
   width: 100%;
+}
+
+.unavailable {
+  text-align: center;
+  color: var(--ion-color-medium);
+  margin: 12px 0;
 }

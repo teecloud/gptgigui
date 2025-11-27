@@ -15,7 +15,8 @@ export class OrderQueueComponent {
 
   getItemColor(order: Order): string {
     const now = new Date();
-    const scheduled = new Date(order.scheduledTime);
+    const scheduledValue = order.scheduledSlot ?? order.createdAt;
+    const scheduled = scheduledValue ? new Date(scheduledValue) : new Date();
     const diff = scheduled.getTime() - now.getTime();
 
     if (diff < 0) {

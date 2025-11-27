@@ -30,7 +30,13 @@
         </ion-card-content>
       }
     </ion-card>
-    <app-payment-button [amount]="(item.price || 0) * 100"></app-payment-button>
+    <app-payment-button
+      [amount]="(item.price || 0) * 100"
+      [item]="item"
+      [scheduledSlot]="item.selectedSlot"
+      (transactionCompleted)="onPaymentComplete()"
+      (transactionFailed)="onPaymentFailed($event)"
+    ></app-payment-button>
   } @else {
     <ion-list>
       <ion-item>
